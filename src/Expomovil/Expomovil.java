@@ -47,9 +47,11 @@ public class Expomovil extends javax.swing.JFrame {
         jList2 = new javax.swing.JList<>();
         jButton3 = new javax.swing.JButton();
         crearVehiculo = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jList3 = new javax.swing.JList<>();
-        jButton4 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        jButton11 = new javax.swing.JButton();
         modificarVehiculo = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jList4 = new javax.swing.JList<>();
@@ -62,7 +64,7 @@ public class Expomovil extends javax.swing.JFrame {
         jScrollPane6 = new javax.swing.JScrollPane();
         jList6 = new javax.swing.JList<>();
         jButton7 = new javax.swing.JButton();
-        visualizarVehiculo = new javax.swing.JPanel();
+        visualizarVehiculos = new javax.swing.JPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
         jList7 = new javax.swing.JList<>();
         jButton8 = new javax.swing.JButton();
@@ -73,9 +75,6 @@ public class Expomovil extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         busquedaAvanzada = new javax.swing.JPanel();
-        jScrollPane9 = new javax.swing.JScrollPane();
-        jList9 = new javax.swing.JList<>();
-        jButton10 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -114,7 +113,7 @@ public class Expomovil extends javax.swing.JFrame {
                 .addComponent(intro2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(intro3)
-                .addContainerGap(305, Short.MAX_VALUE))
+                .addContainerGap(326, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Home", ventanaPrincipal);
@@ -160,7 +159,7 @@ public class Expomovil extends javax.swing.JFrame {
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addComponent(jButton1)
-                .addContainerGap(258, Short.MAX_VALUE))
+                .addContainerGap(279, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Crear Agencia", crearAgencia);
@@ -194,7 +193,7 @@ public class Expomovil extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addContainerGap(176, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Eliminar Agencia", eliminarAgencia);
@@ -228,41 +227,57 @@ public class Expomovil extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton3)
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addContainerGap(176, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Consultar Agencia", consultarAgencia);
 
         crearVehiculo.setBackground(new java.awt.Color(255, 255, 255));
 
-        jList3.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane3.setViewportView(jList3);
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel4.setText("Nombre de la Agencia:");
 
-        jButton4.setText("Crear");
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel5.setText("Cedula Juridica:");
+
+        jButton11.setText("Crear");
 
         javax.swing.GroupLayout crearVehiculoLayout = new javax.swing.GroupLayout(crearVehiculo);
         crearVehiculo.setLayout(crearVehiculoLayout);
         crearVehiculoLayout.setHorizontalGroup(
             crearVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(crearVehiculoLayout.createSequentialGroup()
-                .addGap(297, 297, 297)
-                .addGroup(crearVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane3)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE))
-                .addContainerGap(293, Short.MAX_VALUE))
+            .addGap(0, 978, Short.MAX_VALUE)
+            .addGroup(crearVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(crearVehiculoLayout.createSequentialGroup()
+                    .addGap(304, 304, 304)
+                    .addGroup(crearVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(crearVehiculoLayout.createSequentialGroup()
+                            .addGroup(crearVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(crearVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addContainerGap(305, Short.MAX_VALUE)))
         );
         crearVehiculoLayout.setVerticalGroup(
             crearVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(crearVehiculoLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton4)
-                .addContainerGap(155, Short.MAX_VALUE))
+            .addGap(0, 469, Short.MAX_VALUE)
+            .addGroup(crearVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(crearVehiculoLayout.createSequentialGroup()
+                    .addGap(175, 175, 175)
+                    .addGroup(crearVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4))
+                    .addGap(11, 11, 11)
+                    .addGroup(crearVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5)
+                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(26, 26, 26)
+                    .addComponent(jButton11)
+                    .addContainerGap(176, Short.MAX_VALUE)))
         );
 
         jTabbedPane1.addTab("Crear Vehiculo", crearVehiculo);
@@ -296,7 +311,7 @@ public class Expomovil extends javax.swing.JFrame {
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton5)
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addContainerGap(176, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Modificar Vehiculo", modificarVehiculo);
@@ -330,7 +345,7 @@ public class Expomovil extends javax.swing.JFrame {
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton6)
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addContainerGap(176, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Eliminar Vehiculo", eliminarVehiculo);
@@ -364,12 +379,12 @@ public class Expomovil extends javax.swing.JFrame {
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton7)
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addContainerGap(176, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Consultar Vehiculo", consultarVehiculo);
 
-        visualizarVehiculo.setBackground(new java.awt.Color(255, 255, 255));
+        visualizarVehiculos.setBackground(new java.awt.Color(255, 255, 255));
 
         jList7.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -380,28 +395,28 @@ public class Expomovil extends javax.swing.JFrame {
 
         jButton8.setText("Visualizar Vehiculos");
 
-        javax.swing.GroupLayout visualizarVehiculoLayout = new javax.swing.GroupLayout(visualizarVehiculo);
-        visualizarVehiculo.setLayout(visualizarVehiculoLayout);
-        visualizarVehiculoLayout.setHorizontalGroup(
-            visualizarVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(visualizarVehiculoLayout.createSequentialGroup()
+        javax.swing.GroupLayout visualizarVehiculosLayout = new javax.swing.GroupLayout(visualizarVehiculos);
+        visualizarVehiculos.setLayout(visualizarVehiculosLayout);
+        visualizarVehiculosLayout.setHorizontalGroup(
+            visualizarVehiculosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(visualizarVehiculosLayout.createSequentialGroup()
                 .addGap(297, 297, 297)
-                .addGroup(visualizarVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(visualizarVehiculosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane7)
                     .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE))
                 .addContainerGap(293, Short.MAX_VALUE))
         );
-        visualizarVehiculoLayout.setVerticalGroup(
-            visualizarVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(visualizarVehiculoLayout.createSequentialGroup()
+        visualizarVehiculosLayout.setVerticalGroup(
+            visualizarVehiculosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(visualizarVehiculosLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton8)
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addContainerGap(176, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Visualizar Vehiculos", visualizarVehiculo);
+        jTabbedPane1.addTab("Visualizar Vehiculos", visualizarVehiculos);
 
         listaEspera.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -456,41 +471,22 @@ public class Expomovil extends javax.swing.JFrame {
                         .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton9)))
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addContainerGap(176, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Lista de Espera", listaEspera);
 
         busquedaAvanzada.setBackground(new java.awt.Color(255, 255, 255));
 
-        jList9.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane9.setViewportView(jList9);
-
-        jButton10.setText("Consultar Agencia");
-
         javax.swing.GroupLayout busquedaAvanzadaLayout = new javax.swing.GroupLayout(busquedaAvanzada);
         busquedaAvanzada.setLayout(busquedaAvanzadaLayout);
         busquedaAvanzadaLayout.setHorizontalGroup(
             busquedaAvanzadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(busquedaAvanzadaLayout.createSequentialGroup()
-                .addGap(297, 297, 297)
-                .addGroup(busquedaAvanzadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane9)
-                    .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE))
-                .addContainerGap(293, Short.MAX_VALUE))
+            .addGap(0, 978, Short.MAX_VALUE)
         );
         busquedaAvanzadaLayout.setVerticalGroup(
             busquedaAvanzadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(busquedaAvanzadaLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton10)
-                .addContainerGap(155, Short.MAX_VALUE))
+            .addGap(0, 469, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Busqueda Avanzada", busquedaAvanzada);
@@ -556,10 +552,9 @@ public class Expomovil extends javax.swing.JFrame {
     private javax.swing.JLabel intro2;
     private javax.swing.JLabel intro3;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
@@ -568,15 +563,15 @@ public class Expomovil extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JList<String> jList1;
     private javax.swing.JList<String> jList2;
-    private javax.swing.JList<String> jList3;
     private javax.swing.JList<String> jList4;
     private javax.swing.JList<String> jList5;
     private javax.swing.JList<String> jList6;
     private javax.swing.JList<String> jList7;
     private javax.swing.JList<String> jList8;
-    private javax.swing.JList<String> jList9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -598,19 +593,19 @@ public class Expomovil extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
     private javax.swing.JPanel listaEspera;
     private javax.swing.JPanel modificarVehiculo;
     private javax.swing.JPanel ventanaPrincipal;
-    private javax.swing.JPanel visualizarVehiculo;
+    private javax.swing.JPanel visualizarVehiculos;
     // End of variables declaration//GEN-END:variables
 }
