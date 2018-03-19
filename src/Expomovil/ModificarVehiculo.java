@@ -48,7 +48,7 @@ public class ModificarVehiculo extends javax.swing.JFrame {
     
     public void agregarExtras(String[] extras) {
         for(int x = 0; x != extras.length; x++) {
-            this.listaExtras.
+            
         }
     }
 
