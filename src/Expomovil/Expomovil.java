@@ -5,17 +5,119 @@
  */
 package Expomovil;
 
+import DataStructures.LinkedList;
+import DataStructures.Queue;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author allanvz
  */
 public class Expomovil extends javax.swing.JFrame {
+    
+    //atributos
+    DefaultListModel listaAgencias;
+    DefaultListModel listaVehiculos;
+    DefaultListModel listaVisualizar;
+    DefaultListModel listaEsperaVisualizar;
+    DefaultComboBoxModel listaAgenciasS;
+    DefaultComboBoxModel listaVehiculosS;
+    LinkedList<Agencia> listaDeAgencias;
+    LinkedList<Vehiculo> listaDeVehiculos;
+    Queue<Cliente> listaDeClientes;
 
     /**
      * Creates new form interfazGrafica
      */
     public Expomovil() {
         initComponents();
+        this.listaAgencias = new DefaultListModel();
+        this.listaAgenciaEliminar.setModel(this.listaAgencias);
+        this.listaAgenciaConsultar.setModel(this.listaAgencias);
+        this.listaVehiculos = new DefaultListModel();
+        this.listaVehiculoConsultar.setModel(this.listaVehiculos);
+        this.listaVehiculoEliminar.setModel(this.listaVehiculos);
+        this.listaVehiculoModificar.setModel(this.listaVehiculos);
+        this.listaVisualizar = new DefaultListModel();
+        this.listaVisualizarVehiculos.setModel(this.listaVisualizar);
+        this.listaEsperaVisualizar = new DefaultListModel();
+        this.listaAtenderEspera.setModel(this.listaEsperaVisualizar);
+        this.listaAgenciasS = new DefaultComboBoxModel();
+        this.agenciaVehiculo.setModel(this.listaAgenciasS);
+        this.elegirAgencia.setModel(this.listaAgenciasS);
+        this.agenciaBusqueda.setModel(this.listaAgenciasS);
+        this.listaVehiculosS = new DefaultComboBoxModel();
+        this.vehiculoSolicitar.setModel(this.listaVehiculosS);
+        this.listaDeAgencias = new LinkedList();
+        this.listaDeVehiculos = new LinkedList();
+        this.listaDeClientes = new Queue();
+    }
+    
+    public void agregarAgencia(String cedJuridica, String nombre) {
+        Agencia agenciaTemp = new Agencia(cedJuridica, nombre);
+        this.listaDeAgencias.append(agenciaTemp);
+        agregarListaAgencias(agenciaTemp.getNombre());
+        agregarListaAgenciasS(agenciaTemp.getNombre());
+    }
+    
+    public void agregarListaAgencias(String elemento) {
+        this.listaAgencias.addElement(elemento);
+    }
+    
+    public void agregarListaVehiculos(String elemento) {
+        this.listaVehiculos.addElement(elemento);
+    }
+    
+    public void agregarListaVisualizar(String elemento) {
+        this.listaVisualizar.addElement(elemento);
+    }
+    
+    public void agregarListaEsperaVisualizar(String elemento) {
+        this.listaEsperaVisualizar.addElement(elemento);
+    }
+    
+    public void agregarListaAgenciasS(String elemento) {
+        this.listaAgenciasS.addElement(elemento);
+    }
+    
+    public void agregarListaVehiculosS(String elemento) {
+        this.listaVehiculosS.addElement(elemento);
+    }
+    
+    public void eliminarListaAgencias() {
+        
+    }
+    
+    public void eliminarListaVehiculos() {
+        
+    }
+    
+    public void eliminarListaVisualizar() {
+        
+    }
+    
+    public void eliminarListaEsperaVisualizar() {
+        
+    }
+    
+    public void eliminarListaAgenciasS() {
+        
+    }
+    
+    public void eliminarListaVehiculosS() {
+        
+    }
+    
+    public void agregarVehiculo(String marca, String modelo, String tipo, 
+            String descripcion, int cilindrada, String combustible, 
+            String transmision, String color, String[] extras, 
+            String foto, double precio, int cantidad, Agencia agencia) {
+        Vehiculo vehiculoTemp = new Vehiculo(marca, modelo, tipo, 
+            descripcion, cilindrada, combustible, 
+            transmision, color, extras, 
+            foto, precio, cantidad, agencia);
+        this.listaDeVehiculos.append(vehiculoTemp);
     }
 
     /**
@@ -94,6 +196,7 @@ public class Expomovil extends javax.swing.JFrame {
         jScrollPane7 = new javax.swing.JScrollPane();
         listaVisualizarVehiculos = new javax.swing.JList<>();
         visualizarVehiculos = new javax.swing.JButton();
+        elegirAgencia = new javax.swing.JComboBox<>();
         listaEspera = new javax.swing.JTabbedPane();
         solicitarVehiculo = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
@@ -222,11 +325,6 @@ public class Expomovil extends javax.swing.JFrame {
 
         agencia.addTab("Crear", jPanel1);
 
-        listaAgenciaEliminar.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(listaAgenciaEliminar);
 
         botonEliminarAgencia.setText("Eliminar");
@@ -257,11 +355,6 @@ public class Expomovil extends javax.swing.JFrame {
 
         agencia.addTab("Eliminar", jPanel2);
 
-        listaAgenciaConsultar.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane3.setViewportView(listaAgenciaConsultar);
 
         botonConsultarAgencia.setText("Consultar");
@@ -329,8 +422,6 @@ public class Expomovil extends javax.swing.JFrame {
         jButton4.setText("+");
 
         jButton5.setText("⚲");
-
-        agenciaVehiculo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         crearVehiculo.setText("Crear");
 
@@ -446,11 +537,6 @@ public class Expomovil extends javax.swing.JFrame {
 
         vehiculo.addTab("Crear", jPanel4);
 
-        listaVehiculoEliminar.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane4.setViewportView(listaVehiculoEliminar);
 
         eliminarVehiculo.setText("Eliminar");
@@ -481,11 +567,6 @@ public class Expomovil extends javax.swing.JFrame {
 
         vehiculo.addTab("Eliminar", jPanel5);
 
-        listaVehiculoModificar.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane5.setViewportView(listaVehiculoModificar);
 
         modificarVehiculo.setText("Modificar");
@@ -516,11 +597,6 @@ public class Expomovil extends javax.swing.JFrame {
 
         vehiculo.addTab("Modificar", jPanel6);
 
-        listaVehiculoConsultar.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane6.setViewportView(listaVehiculoConsultar);
 
         consultarVehiculo.setText("Consultar");
@@ -553,11 +629,6 @@ public class Expomovil extends javax.swing.JFrame {
 
         contenedorPrincipal.addTab("Vehiculo", vehiculo);
 
-        listaVisualizarVehiculos.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane7.setViewportView(listaVisualizarVehiculos);
 
         visualizarVehiculos.setText("Visualizar");
@@ -567,23 +638,30 @@ public class Expomovil extends javax.swing.JFrame {
         visualizarLayout.setHorizontalGroup(
             visualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(visualizarLayout.createSequentialGroup()
-                .addContainerGap(168, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(visualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, visualizarLayout.createSequentialGroup()
+                        .addComponent(elegirAgencia, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                         .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(155, 155, 155))
+                        .addGap(36, 36, 36))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, visualizarLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(visualizarVehiculos)
-                        .addGap(255, 255, 255))))
+                        .addGap(144, 144, 144))))
         );
         visualizarLayout.setVerticalGroup(
             visualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(visualizarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(visualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(visualizarLayout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(elegirAgencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(visualizarVehiculos)
-                .addContainerGap(251, Short.MAX_VALUE))
+                .addContainerGap(259, Short.MAX_VALUE))
         );
 
         contenedorPrincipal.addTab("Visualizar", visualizar);
@@ -597,8 +675,6 @@ public class Expomovil extends javax.swing.JFrame {
         jLabel19.setText("Telefono:");
 
         jLabel20.setText("Correo:");
-
-        vehiculoSolicitar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel21.setText("Vehiculo:");
 
@@ -747,11 +823,6 @@ public class Expomovil extends javax.swing.JFrame {
                 .addContainerGap(151, Short.MAX_VALUE))
         );
 
-        listaAtenderEspera.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane2.setViewportView(listaAtenderEspera);
 
         atenderEspera.setText("Atender");
@@ -808,8 +879,6 @@ public class Expomovil extends javax.swing.JFrame {
         jLabel36.setText("Modelo:");
 
         jLabel37.setText("Precio:");
-
-        agenciaBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         realizarBusqueda.setText("Realizar");
 
@@ -938,6 +1007,7 @@ public class Expomovil extends javax.swing.JFrame {
     private javax.swing.JButton crearVehiculo;
     private javax.swing.JTextField descripcionVehiculo;
     private javax.swing.JTextField direccionSolicitar;
+    private javax.swing.JComboBox<String> elegirAgencia;
     private javax.swing.JButton eliminarVehiculo;
     private javax.swing.JTextField extrasVehiculo;
     private javax.swing.JTextField fotoVehiculo;

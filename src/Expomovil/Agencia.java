@@ -68,7 +68,13 @@ public class Agencia {
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
-
     
+    /**
+     * @param cantidad 
+     */
+
+    public void addCantidad(int cantidad) {
+        this.cantidad += cantidad;
+    }
     
 }
