@@ -36,17 +36,17 @@ public class Expomovil extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        nombreAgencia = new javax.swing.JTextField();
+        cedulaAgencia = new javax.swing.JTextField();
+        botonCrearAgencia = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jButton2 = new javax.swing.JButton();
+        listaAgenciaEliminar = new javax.swing.JList<>();
+        botonEliminarAgencia = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jList3 = new javax.swing.JList<>();
-        jButton3 = new javax.swing.JButton();
+        listaAgenciaConsultar = new javax.swing.JList<>();
+        botonConsultarAgencia = new javax.swing.JButton();
         vehiculo = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -62,38 +62,38 @@ public class Expomovil extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField11 = new javax.swing.JTextField();
-        jTextField12 = new javax.swing.JTextField();
-        jTextField13 = new javax.swing.JTextField();
+        modeloVehiculo = new javax.swing.JTextField();
+        tipoVehiculo = new javax.swing.JTextField();
+        marcaVehiculo = new javax.swing.JTextField();
+        descripcionVehiculo = new javax.swing.JTextField();
+        cilindradaVehiculo = new javax.swing.JTextField();
+        combustibleVehiculo = new javax.swing.JTextField();
+        transmisionVehiculo = new javax.swing.JTextField();
+        colorVehiculo = new javax.swing.JTextField();
+        extrasVehiculo = new javax.swing.JTextField();
+        fotoVehiculo = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jTextField14 = new javax.swing.JTextField();
-        jTextField15 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton6 = new javax.swing.JButton();
+        precioVehiculo = new javax.swing.JTextField();
+        cantidadVehiculo = new javax.swing.JTextField();
+        agenciaVehiculo = new javax.swing.JComboBox<>();
+        crearVehiculo = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jList4 = new javax.swing.JList<>();
-        jButton7 = new javax.swing.JButton();
+        listaVehiculoEliminar = new javax.swing.JList<>();
+        eliminarVehiculo = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jList5 = new javax.swing.JList<>();
-        jButton8 = new javax.swing.JButton();
+        listaVehiculoModificar = new javax.swing.JList<>();
+        modificarVehiculo = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jList6 = new javax.swing.JList<>();
-        jButton9 = new javax.swing.JButton();
+        listaVehiculoConsultar = new javax.swing.JList<>();
+        consultarVehiculo = new javax.swing.JButton();
         visualizar = new javax.swing.JPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
-        jList7 = new javax.swing.JList<>();
-        jButton10 = new javax.swing.JButton();
+        listaVisualizarVehiculos = new javax.swing.JList<>();
+        visualizarVehiculos = new javax.swing.JButton();
         listaEspera = new javax.swing.JTabbedPane();
         solicitarVehiculo = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
@@ -101,14 +101,14 @@ public class Expomovil extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
-        jTextField16 = new javax.swing.JTextField();
-        jTextField17 = new javax.swing.JTextField();
-        jTextField18 = new javax.swing.JTextField();
-        jTextField19 = new javax.swing.JTextField();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cedulaSolicitar = new javax.swing.JTextField();
+        nombreSolicitar = new javax.swing.JTextField();
+        direccionSolicitar = new javax.swing.JTextField();
+        telefonoSolicitar = new javax.swing.JTextField();
+        correoSolicitar = new javax.swing.JTextField();
+        vehiculoSolicitar = new javax.swing.JComboBox<>();
         jLabel21 = new javax.swing.JLabel();
-        jButton11 = new javax.swing.JButton();
+        solicitar = new javax.swing.JButton();
         visualizarLista = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
@@ -124,20 +124,20 @@ public class Expomovil extends javax.swing.JFrame {
         jLabel32 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
-        jButton12 = new javax.swing.JButton();
-        jButton13 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
+        listaAtenderEspera = new javax.swing.JList<>();
+        atenderEspera = new javax.swing.JButton();
+        infoEspera = new javax.swing.JButton();
+        revisarDispon = new javax.swing.JButton();
         busquedaAvanzada = new javax.swing.JPanel();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jTextField20 = new javax.swing.JTextField();
-        jTextField21 = new javax.swing.JTextField();
-        jTextField22 = new javax.swing.JTextField();
-        jButton15 = new javax.swing.JButton();
+        agenciaBusqueda = new javax.swing.JComboBox<>();
+        marcaBusqueda = new javax.swing.JTextField();
+        modeloBusqueda = new javax.swing.JTextField();
+        precioBusqueda = new javax.swing.JTextField();
+        realizarBusqueda = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -185,7 +185,7 @@ public class Expomovil extends javax.swing.JFrame {
 
         jLabel2.setText("Cedula Juridica:");
 
-        jButton1.setText("Crear");
+        botonCrearAgencia.setText("Crear");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -198,10 +198,10 @@ public class Expomovil extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
+                    .addComponent(botonCrearAgencia)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jTextField1)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)))
+                        .addComponent(nombreAgencia)
+                        .addComponent(cedulaAgencia, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)))
                 .addContainerGap(149, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -210,26 +210,26 @@ public class Expomovil extends javax.swing.JFrame {
                 .addGap(72, 72, 72)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nombreAgencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cedulaAgencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(botonCrearAgencia)
                 .addContainerGap(209, Short.MAX_VALUE))
         );
 
         agencia.addTab("Crear", jPanel1);
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        listaAgenciaEliminar.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(listaAgenciaEliminar);
 
-        jButton2.setText("Eliminar");
+        botonEliminarAgencia.setText("Eliminar");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -242,7 +242,7 @@ public class Expomovil extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(254, 254, 254)
-                        .addComponent(jButton2)))
+                        .addComponent(botonEliminarAgencia)))
                 .addContainerGap(155, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -251,20 +251,20 @@ public class Expomovil extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(botonEliminarAgencia)
                 .addContainerGap(165, Short.MAX_VALUE))
         );
 
         agencia.addTab("Eliminar", jPanel2);
 
-        jList3.setModel(new javax.swing.AbstractListModel<String>() {
+        listaAgenciaConsultar.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane3.setViewportView(jList3);
+        jScrollPane3.setViewportView(listaAgenciaConsultar);
 
-        jButton3.setText("Consultar");
+        botonConsultarAgencia.setText("Consultar");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -277,7 +277,7 @@ public class Expomovil extends javax.swing.JFrame {
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(253, 253, 253)
-                        .addComponent(jButton3)))
+                        .addComponent(botonConsultarAgencia)))
                 .addContainerGap(155, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -286,7 +286,7 @@ public class Expomovil extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addComponent(botonConsultarAgencia)
                 .addContainerGap(165, Short.MAX_VALUE))
         );
 
@@ -320,9 +320,9 @@ public class Expomovil extends javax.swing.JFrame {
 
         jLabel15.setText("Agencia:");
 
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        marcaVehiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                marcaVehiculoActionPerformed(evt);
             }
         });
 
@@ -330,9 +330,9 @@ public class Expomovil extends javax.swing.JFrame {
 
         jButton5.setText("⚲");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        agenciaVehiculo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jButton6.setText("Crear");
+        crearVehiculo.setText("Crear");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -352,46 +352,46 @@ public class Expomovil extends javax.swing.JFrame {
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField3)
-                            .addComponent(jTextField4)
-                            .addComponent(jTextField5)
-                            .addComponent(jTextField6)
-                            .addComponent(jTextField7)
-                            .addComponent(jTextField8)
-                            .addComponent(jTextField9, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
+                            .addComponent(modeloVehiculo)
+                            .addComponent(tipoVehiculo)
+                            .addComponent(marcaVehiculo)
+                            .addComponent(descripcionVehiculo)
+                            .addComponent(cilindradaVehiculo)
+                            .addComponent(combustibleVehiculo)
+                            .addComponent(transmisionVehiculo, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField12))
+                                .addComponent(extrasVehiculo))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(colorVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField14))
+                                .addComponent(precioVehiculo))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel14)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField15))
+                                .addComponent(cantidadVehiculo))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(agenciaVehiculo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField13)))
+                                .addComponent(fotoVehiculo)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(265, 265, 265)
-                        .addComponent(jButton6)))
+                        .addComponent(crearVehiculo)))
                 .addContainerGap(10, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -401,59 +401,59 @@ public class Expomovil extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel10)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(marcaVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(colorVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel11)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(modeloVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(extrasVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jLabel12)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tipoVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fotoVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5))
                 .addGap(22, 22, 22)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel13)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(descripcionVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(precioVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jLabel14)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cilindradaVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cantidadVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jLabel15)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(combustibleVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(agenciaVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(transmisionVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton6)
+                .addComponent(crearVehiculo)
                 .addContainerGap(43, Short.MAX_VALUE))
         );
 
         vehiculo.addTab("Crear", jPanel4);
 
-        jList4.setModel(new javax.swing.AbstractListModel<String>() {
+        listaVehiculoEliminar.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane4.setViewportView(jList4);
+        jScrollPane4.setViewportView(listaVehiculoEliminar);
 
-        jButton7.setText("Eliminar");
+        eliminarVehiculo.setText("Eliminar");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -466,7 +466,7 @@ public class Expomovil extends javax.swing.JFrame {
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(255, 255, 255)
-                        .addComponent(jButton7)))
+                        .addComponent(eliminarVehiculo)))
                 .addContainerGap(159, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -475,20 +475,20 @@ public class Expomovil extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton7)
+                .addComponent(eliminarVehiculo)
                 .addContainerGap(145, Short.MAX_VALUE))
         );
 
         vehiculo.addTab("Eliminar", jPanel5);
 
-        jList5.setModel(new javax.swing.AbstractListModel<String>() {
+        listaVehiculoModificar.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane5.setViewportView(jList5);
+        jScrollPane5.setViewportView(listaVehiculoModificar);
 
-        jButton8.setText("Modificar");
+        modificarVehiculo.setText("Modificar");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -498,7 +498,7 @@ public class Expomovil extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(254, 254, 254)
-                        .addComponent(jButton8))
+                        .addComponent(modificarVehiculo))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(157, 157, 157)
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -510,20 +510,20 @@ public class Expomovil extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton8)
+                .addComponent(modificarVehiculo)
                 .addContainerGap(145, Short.MAX_VALUE))
         );
 
         vehiculo.addTab("Modificar", jPanel6);
 
-        jList6.setModel(new javax.swing.AbstractListModel<String>() {
+        listaVehiculoConsultar.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane6.setViewportView(jList6);
+        jScrollPane6.setViewportView(listaVehiculoConsultar);
 
-        jButton9.setText("Consultar");
+        consultarVehiculo.setText("Consultar");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -536,7 +536,7 @@ public class Expomovil extends javax.swing.JFrame {
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGap(254, 254, 254)
-                        .addComponent(jButton9)))
+                        .addComponent(consultarVehiculo)))
                 .addContainerGap(159, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
@@ -545,7 +545,7 @@ public class Expomovil extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton9)
+                .addComponent(consultarVehiculo)
                 .addContainerGap(145, Short.MAX_VALUE))
         );
 
@@ -553,14 +553,14 @@ public class Expomovil extends javax.swing.JFrame {
 
         contenedorPrincipal.addTab("Vehiculo", vehiculo);
 
-        jList7.setModel(new javax.swing.AbstractListModel<String>() {
+        listaVisualizarVehiculos.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane7.setViewportView(jList7);
+        jScrollPane7.setViewportView(listaVisualizarVehiculos);
 
-        jButton10.setText("Visualizar");
+        visualizarVehiculos.setText("Visualizar");
 
         javax.swing.GroupLayout visualizarLayout = new javax.swing.GroupLayout(visualizar);
         visualizar.setLayout(visualizarLayout);
@@ -573,7 +573,7 @@ public class Expomovil extends javax.swing.JFrame {
                         .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(155, 155, 155))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, visualizarLayout.createSequentialGroup()
-                        .addComponent(jButton10)
+                        .addComponent(visualizarVehiculos)
                         .addGap(255, 255, 255))))
         );
         visualizarLayout.setVerticalGroup(
@@ -582,7 +582,7 @@ public class Expomovil extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton10)
+                .addComponent(visualizarVehiculos)
                 .addContainerGap(251, Short.MAX_VALUE))
         );
 
@@ -598,11 +598,11 @@ public class Expomovil extends javax.swing.JFrame {
 
         jLabel20.setText("Correo:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        vehiculoSolicitar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel21.setText("Vehiculo:");
 
-        jButton11.setText("Solicitar");
+        solicitar.setText("Solicitar");
 
         javax.swing.GroupLayout solicitarVehiculoLayout = new javax.swing.GroupLayout(solicitarVehiculo);
         solicitarVehiculo.setLayout(solicitarVehiculoLayout);
@@ -621,18 +621,18 @@ public class Expomovil extends javax.swing.JFrame {
                     .addGroup(solicitarVehiculoLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(solicitarVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField10)
-                            .addComponent(jTextField16)
-                            .addComponent(jTextField17)
-                            .addComponent(jTextField18, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)))
+                            .addComponent(cedulaSolicitar)
+                            .addComponent(nombreSolicitar)
+                            .addComponent(direccionSolicitar)
+                            .addComponent(telefonoSolicitar, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)))
                     .addGroup(solicitarVehiculoLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(solicitarVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField19)
-                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(correoSolicitar)
+                            .addComponent(vehiculoSolicitar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(solicitarVehiculoLayout.createSequentialGroup()
                                 .addGap(9, 9, 9)
-                                .addComponent(jButton11)
+                                .addComponent(solicitar)
                                 .addGap(0, 96, Short.MAX_VALUE)))))
                 .addGap(197, 197, 197))
         );
@@ -642,29 +642,29 @@ public class Expomovil extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(solicitarVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cedulaSolicitar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(solicitarVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
-                    .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nombreSolicitar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(solicitarVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
-                    .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(direccionSolicitar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(solicitarVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
-                    .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(telefonoSolicitar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(solicitarVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
-                    .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(correoSolicitar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(solicitarVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(vehiculoSolicitar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel21))
                 .addGap(18, 18, 18)
-                .addComponent(jButton11)
+                .addComponent(solicitar)
                 .addContainerGap(98, Short.MAX_VALUE))
         );
 
@@ -747,18 +747,18 @@ public class Expomovil extends javax.swing.JFrame {
                 .addContainerGap(151, Short.MAX_VALUE))
         );
 
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
+        listaAtenderEspera.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane2.setViewportView(jList2);
+        jScrollPane2.setViewportView(listaAtenderEspera);
 
-        jButton12.setText("Atender");
+        atenderEspera.setText("Atender");
 
-        jButton13.setText("Info.");
+        infoEspera.setText("Info.");
 
-        jButton14.setText("Revisar Disp.");
+        revisarDispon.setText("Revisar Disp.");
 
         javax.swing.GroupLayout visualizarListaLayout = new javax.swing.GroupLayout(visualizarLista);
         visualizarLista.setLayout(visualizarListaLayout);
@@ -771,11 +771,11 @@ public class Expomovil extends javax.swing.JFrame {
                 .addGroup(visualizarListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(visualizarListaLayout.createSequentialGroup()
-                        .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(atenderEspera, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(infoEspera, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(26, 26, 26)
-                .addComponent(jButton14)
+                .addComponent(revisarDispon)
                 .addGap(40, 40, 40))
         );
         visualizarListaLayout.setVerticalGroup(
@@ -788,11 +788,11 @@ public class Expomovil extends javax.swing.JFrame {
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(visualizarListaLayout.createSequentialGroup()
                                 .addGap(103, 103, 103)
-                                .addComponent(jButton14)))
+                                .addComponent(revisarDispon)))
                         .addGap(18, 18, 18)
                         .addGroup(visualizarListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton12)
-                            .addComponent(jButton13)))
+                            .addComponent(atenderEspera)
+                            .addComponent(infoEspera)))
                     .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
@@ -809,9 +809,9 @@ public class Expomovil extends javax.swing.JFrame {
 
         jLabel37.setText("Precio:");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        agenciaBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jButton15.setText("Realizar");
+        realizarBusqueda.setText("Realizar");
 
         javax.swing.GroupLayout busquedaAvanzadaLayout = new javax.swing.GroupLayout(busquedaAvanzada);
         busquedaAvanzada.setLayout(busquedaAvanzadaLayout);
@@ -828,13 +828,13 @@ public class Expomovil extends javax.swing.JFrame {
                             .addComponent(jLabel37, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(busquedaAvanzadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBox3, 0, 200, Short.MAX_VALUE)
-                            .addComponent(jTextField20)
-                            .addComponent(jTextField21)
-                            .addComponent(jTextField22)))
+                            .addComponent(agenciaBusqueda, 0, 200, Short.MAX_VALUE)
+                            .addComponent(marcaBusqueda)
+                            .addComponent(modeloBusqueda)
+                            .addComponent(precioBusqueda)))
                     .addGroup(busquedaAvanzadaLayout.createSequentialGroup()
                         .addGap(214, 214, 214)
-                        .addComponent(jButton15)))
+                        .addComponent(realizarBusqueda)))
                 .addContainerGap(263, Short.MAX_VALUE))
         );
         busquedaAvanzadaLayout.setVerticalGroup(
@@ -843,21 +843,21 @@ public class Expomovil extends javax.swing.JFrame {
                 .addGap(46, 46, 46)
                 .addGroup(busquedaAvanzadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel34)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(agenciaBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(busquedaAvanzadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel35)
-                    .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(marcaBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(busquedaAvanzadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel36)
-                    .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(modeloBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(busquedaAvanzadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel37)
-                    .addComponent(jTextField22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(precioBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton15)
+                .addComponent(realizarBusqueda)
                 .addContainerGap(192, Short.MAX_VALUE))
         );
 
@@ -877,9 +877,9 @@ public class Expomovil extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void marcaVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_marcaVehiculoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_marcaVehiculoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -919,30 +919,35 @@ public class Expomovil extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane agencia;
+    private javax.swing.JComboBox<String> agenciaBusqueda;
+    private javax.swing.JComboBox<String> agenciaVehiculo;
+    private javax.swing.JButton atenderEspera;
+    private javax.swing.JButton botonConsultarAgencia;
+    private javax.swing.JButton botonCrearAgencia;
+    private javax.swing.JButton botonEliminarAgencia;
     private javax.swing.JPanel busquedaAvanzada;
+    private javax.swing.JTextField cantidadVehiculo;
+    private javax.swing.JTextField cedulaAgencia;
+    private javax.swing.JTextField cedulaSolicitar;
+    private javax.swing.JTextField cilindradaVehiculo;
+    private javax.swing.JTextField colorVehiculo;
+    private javax.swing.JTextField combustibleVehiculo;
+    private javax.swing.JButton consultarVehiculo;
     private javax.swing.JTabbedPane contenedorPrincipal;
+    private javax.swing.JTextField correoSolicitar;
+    private javax.swing.JButton crearVehiculo;
+    private javax.swing.JTextField descripcionVehiculo;
+    private javax.swing.JTextField direccionSolicitar;
+    private javax.swing.JButton eliminarVehiculo;
+    private javax.swing.JTextField extrasVehiculo;
+    private javax.swing.JTextField fotoVehiculo;
     private javax.swing.JPanel home;
+    private javax.swing.JButton infoEspera;
     private javax.swing.JLabel intro1;
     private javax.swing.JLabel intro2;
     private javax.swing.JLabel intro3;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -980,13 +985,6 @@ public class Expomovil extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
-    private javax.swing.JList<String> jList3;
-    private javax.swing.JList<String> jList4;
-    private javax.swing.JList<String> jList5;
-    private javax.swing.JList<String> jList6;
-    private javax.swing.JList<String> jList7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -1002,32 +1000,34 @@ public class Expomovil extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
-    private javax.swing.JTextField jTextField16;
-    private javax.swing.JTextField jTextField17;
-    private javax.swing.JTextField jTextField18;
-    private javax.swing.JTextField jTextField19;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField20;
-    private javax.swing.JTextField jTextField21;
-    private javax.swing.JTextField jTextField22;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JList<String> listaAgenciaConsultar;
+    private javax.swing.JList<String> listaAgenciaEliminar;
+    private javax.swing.JList<String> listaAtenderEspera;
     private javax.swing.JTabbedPane listaEspera;
+    private javax.swing.JList<String> listaVehiculoConsultar;
+    private javax.swing.JList<String> listaVehiculoEliminar;
+    private javax.swing.JList<String> listaVehiculoModificar;
+    private javax.swing.JList<String> listaVisualizarVehiculos;
+    private javax.swing.JTextField marcaBusqueda;
+    private javax.swing.JTextField marcaVehiculo;
+    private javax.swing.JTextField modeloBusqueda;
+    private javax.swing.JTextField modeloVehiculo;
+    private javax.swing.JButton modificarVehiculo;
+    private javax.swing.JTextField nombreAgencia;
+    private javax.swing.JTextField nombreSolicitar;
+    private javax.swing.JTextField precioBusqueda;
+    private javax.swing.JTextField precioVehiculo;
+    private javax.swing.JButton realizarBusqueda;
+    private javax.swing.JButton revisarDispon;
+    private javax.swing.JButton solicitar;
     private javax.swing.JPanel solicitarVehiculo;
+    private javax.swing.JTextField telefonoSolicitar;
+    private javax.swing.JTextField tipoVehiculo;
+    private javax.swing.JTextField transmisionVehiculo;
     private javax.swing.JTabbedPane vehiculo;
+    private javax.swing.JComboBox<String> vehiculoSolicitar;
     private javax.swing.JPanel visualizar;
     private javax.swing.JPanel visualizarLista;
+    private javax.swing.JButton visualizarVehiculos;
     // End of variables declaration//GEN-END:variables
 }
