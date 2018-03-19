@@ -18,7 +18,7 @@ public class Vehiculo {
     private int cilindrada;
     private String combustible;
     private String transmision;
-    private String color;
+    private String[] colores;
     private String[] extras;
     private String foto;
     private double precio;
@@ -27,7 +27,7 @@ public class Vehiculo {
 
     public Vehiculo(String marca, String modelo, String tipo, 
             String descripcion, int cilindrada, String combustible, 
-            String transmision, String color, String[] extras, 
+            String transmision, String[] colores, String[] extras, 
             String foto, double precio, int cantidad, Agencia agencia) {
         this.marca = marca;
         this.modelo = modelo;
@@ -36,7 +36,7 @@ public class Vehiculo {
         this.cilindrada = cilindrada;
         this.combustible = combustible;
         this.transmision = transmision;
-        this.color = color;
+        this.colores = colores;
         this.extras = extras;
         this.foto = foto;
         this.precio = precio;
@@ -145,15 +145,15 @@ public class Vehiculo {
     /**
      * @return the color
      */
-    public String getColor() {
-        return color;
+    public String[] getColores() {
+        return colores;
     }
 
     /**
      * @param color the color to set
      */
-    public void setColor(String color) {
-        this.color = color;
+    public void setColores(String[] colores) {
+        this.colores = colores;
     }
 
     /**

@@ -5,24 +5,38 @@
  */
 package Expomovil;
 
+import DataStructures.LinkedList;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author allanvz
  */
 public class ModificarVehiculo extends javax.swing.JFrame {
+    
+    LinkedList<Agencia> agencias;
+    Vehiculo vehiculo;
+    DefaultComboBoxModel listaAgenciasS;
+    DefaultListModel listaColoresS;
+    DefaultListModel listaExtrasS;
 
     /**
      * Creates new form ModificarVehiculo
      */
-    public ModificarVehiculo() {
+    public ModificarVehiculo(LinkedList agencias, Vehiculo vehiculo) {
         initComponents();
-    }
-    
-    public void modificar(Vehiculo vehiculo) {
+        this.agencias = agencias;
+        this.vehiculo = vehiculo;
+        this.listaAgenciasS = new DefaultComboBoxModel();
+        this.agenciaVehiculo.setModel(listaAgenciasS);
+        this.listaColoresS = new DefaultListModel();
+        this.listaColores.setModel(listaColoresS);
+        this.listaExtrasS = new DefaultListModel();
+        this.listaExtras.setModel(listaExtrasS);
         this.agenciaVehiculo.setSelectedItem(vehiculo.getAgencia().getNombre());
         this.cantidadVehiculo.setText(Integer.toString(vehiculo.getCantidad()));
         this.cilindradaVehiculo.setText(Integer.toString(vehiculo.getCilindrada()));
-        this.colorVehiculo.setText(vehiculo.getColor());
         this.combustibleVehiculo.setText(vehiculo.getCombustible());
         this.descripcionVehiculo.setText(vehiculo.getDescripcion());
         this.fotoVehiculo.setText(vehiculo.getFoto());
@@ -32,6 +46,20 @@ public class ModificarVehiculo extends javax.swing.JFrame {
         this.tipoVehiculo.setText(vehiculo.getTipo());
         this.transmisionVehiculo.setText(vehiculo.getTransmision());
         agregarExtras(vehiculo.getExtras());
+        agregarColores(vehiculo.getColores());
+    }
+    
+    public void agregarListaAgenciasS(String elemento) {
+        this.listaAgenciasS.addElement(elemento);
+    }
+    
+    public void eliminarListaAgenciasS() {
+        this.listaAgenciasS.removeAllElements();
+        this.agencias.goToStart();
+        while (this.agencias.getElement() != null) {
+            agregarListaAgenciasS(this.agencias.getElement().getNombre());
+            this.agencias.next();
+        }
     }
     
     public String[] eliminarExtra(String extra, String[] extras){
@@ -47,9 +75,38 @@ public class ModificarVehiculo extends javax.swing.JFrame {
     }
     
     public void agregarExtras(String[] extras) {
+        this.listaExtrasS.clear();
         for(int x = 0; x != extras.length; x++) {
-            
+            this.listaExtrasS.addElement(extras[x]);
         }
+    }
+    
+    public void agregarColores(String[] colores) {
+        this.listaColoresS.clear();
+        for(int x = 0; x != colores.length; x++) {
+            this.listaColoresS.addElement(colores[x]);
+        }
+    }
+    
+    public String[] agregarArreglo(String[] array, String add) {
+        String[] arrayTemp = new String[array.length+1];
+        for(int x = 0; x < array.length; x++) {
+            arrayTemp[x] = array[x];
+        }
+        arrayTemp[-1] = add;
+        return arrayTemp;
+    }
+    
+    public String[] eliminarArreglo(String[] array, String remove) {
+        String[] arrayTemp = new String[array.length-1];
+        int newElement = 0;
+        for(int x = 0; x < arrayTemp.length; x++) {
+            if(array[x] != remove) {
+                arrayTemp[newElement] = array[x];
+                newElement ++;
+            }
+        }
+        return arrayTemp;
     }
 
     /**
@@ -85,13 +142,17 @@ public class ModificarVehiculo extends javax.swing.JFrame {
         colorVehiculo = new javax.swing.JTextField();
         extrasVehiculo = new javax.swing.JTextField();
         fotoVehiculo = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        agregarExtra = new javax.swing.JButton();
+        agregarFoto = new javax.swing.JButton();
         precioVehiculo = new javax.swing.JTextField();
         cantidadVehiculo = new javax.swing.JTextField();
         agenciaVehiculo = new javax.swing.JComboBox<>();
         modificarVehiculo = new javax.swing.JButton();
+        agregarColor = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
+        listaColores = new javax.swing.JList<>();
+        eliminarColor = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
         listaExtras = new javax.swing.JList<>();
         eliminarExtra = new javax.swing.JButton();
 
@@ -129,13 +190,23 @@ public class ModificarVehiculo extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("+");
+        agregarExtra.setText("+");
+        agregarExtra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarExtraActionPerformed(evt);
+            }
+        });
 
-        jButton5.setText("⚲");
-
-        agenciaVehiculo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        agregarFoto.setText("⚲");
 
         modificarVehiculo.setText("Modificar");
+
+        agregarColor.setText("+");
+        agregarColor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarColorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -190,36 +261,39 @@ public class ModificarVehiculo extends javax.swing.JFrame {
                                 .addComponent(fotoVehiculo)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)))
+                            .addComponent(agregarExtra, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(agregarFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                            .addComponent(agregarColor, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(265, 265, 265)
                         .addComponent(modificarVehiculo)))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel10)
-                    .addComponent(marcaVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(colorVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(jLabel10)
+                        .addComponent(marcaVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(colorVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(agregarColor))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel11)
                     .addComponent(modeloVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(extrasVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4))
+                    .addComponent(agregarExtra))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jLabel12)
                     .addComponent(tipoVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(fotoVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5))
+                    .addComponent(agregarFoto))
                 .addGap(22, 22, 22)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -247,30 +321,47 @@ public class ModificarVehiculo extends javax.swing.JFrame {
                 .addContainerGap(43, Short.MAX_VALUE))
         );
 
-        listaExtras.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        jScrollPane1.setViewportView(listaColores);
+
+        eliminarColor.setText("Eliminar");
+        eliminarColor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarColorActionPerformed(evt);
+            }
         });
-        jScrollPane1.setViewportView(listaExtras);
+
+        jScrollPane2.setViewportView(listaExtras);
 
         eliminarExtra.setText("Eliminar");
+        eliminarExtra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarExtraActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 177, Short.MAX_VALUE)
+                .addGap(0, 174, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(37, 37, 37)
+                                .addComponent(eliminarColor))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 14, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(eliminarExtra)))
-                .addGap(0, 17, Short.MAX_VALUE))
+                        .addGap(39, 39, 39)
+                        .addComponent(eliminarExtra)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -282,6 +373,10 @@ public class ModificarVehiculo extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(eliminarColor)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(eliminarExtra)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -293,53 +388,48 @@ public class ModificarVehiculo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_marcaVehiculoActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ModificarVehiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ModificarVehiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ModificarVehiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ModificarVehiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void agregarColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarColorActionPerformed
+        // TODO add your handling code here:
+        String[] newArray = agregarArreglo(this.vehiculo.getColores(), this.colorVehiculo.getText());
+        this.vehiculo.setColores(newArray);
+        agregarColores(vehiculo.getColores());
+    }//GEN-LAST:event_agregarColorActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ModificarVehiculo().setVisible(true);
-            }
-        });
-    }
+    private void agregarExtraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarExtraActionPerformed
+        // TODO add your handling code here:
+        String[] newArray = agregarArreglo(this.vehiculo.getExtras(), this.extrasVehiculo.getText());
+        this.vehiculo.setExtras(newArray);
+        agregarExtras(vehiculo.getExtras());
+    }//GEN-LAST:event_agregarExtraActionPerformed
+
+    private void eliminarColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarColorActionPerformed
+        // TODO add your handling code here:
+        String[] newArray = eliminarArreglo(this.vehiculo.getColores(), this.vehiculo.getColores()[this.listaColores.getSelectedIndex()]);
+        this.vehiculo.setColores(newArray);
+        agregarColores(vehiculo.getColores());
+    }//GEN-LAST:event_eliminarColorActionPerformed
+
+    private void eliminarExtraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarExtraActionPerformed
+        // TODO add your handling code here:
+        String[] newArray = eliminarArreglo(this.vehiculo.getExtras(), this.vehiculo.getExtras()[this.listaExtras.getSelectedIndex()]);
+        this.vehiculo.setExtras(newArray);
+        agregarExtras(vehiculo.getExtras());
+    }//GEN-LAST:event_eliminarExtraActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> agenciaVehiculo;
+    private javax.swing.JButton agregarColor;
+    private javax.swing.JButton agregarExtra;
+    private javax.swing.JButton agregarFoto;
     private javax.swing.JTextField cantidadVehiculo;
     private javax.swing.JTextField cilindradaVehiculo;
     private javax.swing.JTextField colorVehiculo;
     private javax.swing.JTextField combustibleVehiculo;
     private javax.swing.JTextField descripcionVehiculo;
+    private javax.swing.JButton eliminarColor;
     private javax.swing.JButton eliminarExtra;
     private javax.swing.JTextField extrasVehiculo;
     private javax.swing.JTextField fotoVehiculo;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -355,6 +445,8 @@ public class ModificarVehiculo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JList<String> listaColores;
     private javax.swing.JList<String> listaExtras;
     private javax.swing.JTextField marcaVehiculo;
     private javax.swing.JTextField modeloVehiculo;
