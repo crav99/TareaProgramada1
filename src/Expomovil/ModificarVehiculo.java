@@ -20,6 +20,7 @@ public class ModificarVehiculo extends javax.swing.JFrame {
     DefaultComboBoxModel listaAgenciasS;
     DefaultListModel listaColoresS;
     DefaultListModel listaExtrasS;
+    Boolean value;
 
     /**
      * Creates new form ModificarVehiculo
@@ -45,6 +46,7 @@ public class ModificarVehiculo extends javax.swing.JFrame {
         this.precioVehiculo.setText(Double.toString(vehiculo.getPrecio()));
         this.tipoVehiculo.setText(vehiculo.getTipo());
         this.transmisionVehiculo.setText(vehiculo.getTransmision());
+        this.value = false;
         agregarExtras(vehiculo.getExtras());
         agregarColores(vehiculo.getColores());
     }
@@ -83,7 +85,7 @@ public class ModificarVehiculo extends javax.swing.JFrame {
     
     public void agregarColores(String[] colores) {
         this.listaColoresS.clear();
-        for(int x = 0; x != colores.length; x++) {
+        for(int x = 0; x < colores.length; x++) {
             this.listaColoresS.addElement(colores[x]);
         }
     }
@@ -107,6 +109,14 @@ public class ModificarVehiculo extends javax.swing.JFrame {
             }
         }
         return arrayTemp;
+    }
+    
+    public Vehiculo getElement() {
+        return this.vehiculo;
+    }
+    
+    public Boolean getBoolean() {
+        return this.value;
     }
 
     /**
@@ -200,6 +210,11 @@ public class ModificarVehiculo extends javax.swing.JFrame {
         agregarFoto.setText("⚲");
 
         modificarVehiculo.setText("Modificar");
+        modificarVehiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modificarVehiculoActionPerformed(evt);
+            }
+        });
 
         agregarColor.setText("+");
         agregarColor.addActionListener(new java.awt.event.ActionListener() {
@@ -415,6 +430,24 @@ public class ModificarVehiculo extends javax.swing.JFrame {
         this.vehiculo.setExtras(newArray);
         agregarExtras(vehiculo.getExtras());
     }//GEN-LAST:event_eliminarExtraActionPerformed
+
+    private void modificarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarVehiculoActionPerformed
+        // TODO add your handling code here:
+        String marca = this.marcaVehiculo.getText();
+        String modelo = this.modeloVehiculo.getText();
+        String tipo = this.tipoVehiculo.getText();
+        String descripcion = this.descripcionVehiculo.getText();
+        int cilindrada = Integer.valueOf(this.cilindradaVehiculo.getText());
+        String combustible = this.combustibleVehiculo.getText();
+        String transmision = this.transmisionVehiculo.getText();
+        String foto = this.fotoVehiculo.getText();
+        double precio = Double.valueOf(this.precioVehiculo.getText());
+        int cantidad = Integer.valueOf(this.cantidadVehiculo.getText());
+        this.agencias.goToPos(this.agenciaVehiculo.getSelectedIndex());
+        Agencia agenciaPertenencia = this.agencias.getElement();
+        this.vehiculo = new Vehiculo(marca, modelo, tipo, descripcion, cilindrada, transmision, combustible, this.vehiculo.getColores(), this.vehiculo.getExtras(), foto, precio, cantidad, agenciaPertenencia);
+        this.setVisible(false);
+    }//GEN-LAST:event_modificarVehiculoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> agenciaVehiculo;

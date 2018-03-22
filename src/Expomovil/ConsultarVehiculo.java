@@ -128,6 +128,11 @@ public class ConsultarVehiculo extends javax.swing.JFrame {
         labelPrecio.setText("jLabel8");
 
         cerrarVentana.setText("Close");
+        cerrarVentana.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cerrarVentanaActionPerformed(evt);
+            }
+        });
 
         labelAgencia.setText("jLabel1");
 
@@ -221,6 +226,11 @@ public class ConsultarVehiculo extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cerrarVentanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarVentanaActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_cerrarVentanaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel VentanaVehiculo;

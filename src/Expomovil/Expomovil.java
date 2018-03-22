@@ -7,8 +7,10 @@ package Expomovil;
 
 import DataStructures.LinkedList;
 import DataStructures.Queue;
+import java.awt.Window;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
@@ -79,6 +81,13 @@ public class Expomovil extends javax.swing.JFrame {
             descripcion, cilindrada, combustible, 
             transmision, colores, extras, 
             foto, precio, cantidad, agencia);
+        this.listaDeVehiculos.append(vehiculoTemp);
+        agregarListaVehiculos(vehiculoTemp.getMarca()+vehiculoTemp.getModelo());
+        agregarListaVisualizar(vehiculoTemp.getMarca()+vehiculoTemp.getModelo());
+        agregarListaVehiculosS(vehiculoTemp.getMarca()+vehiculoTemp.getModelo());
+    }
+    
+    public void agregarVehiculo(Vehiculo vehiculoTemp) {
         this.listaDeVehiculos.append(vehiculoTemp);
         agregarListaVehiculos(vehiculoTemp.getMarca()+vehiculoTemp.getModelo());
         agregarListaVisualizar(vehiculoTemp.getMarca()+vehiculoTemp.getModelo());
@@ -215,7 +224,7 @@ public class Expomovil extends javax.swing.JFrame {
         for(int x = 0; x < array.length; x++) {
             arrayTemp[x] = array[x];
         }
-        arrayTemp[-1] = add;
+        arrayTemp[arrayTemp.length-1] = add;
         return arrayTemp;
     }
     
@@ -229,6 +238,17 @@ public class Expomovil extends javax.swing.JFrame {
             }
         }
         return arrayTemp;
+    }
+    
+    public String agregarFoto(Window parent){
+        // TODO Auto-generated catch block
+        String path = "";
+        JFileChooser chooser = new JFileChooser();
+        int returnVal = chooser.showOpenDialog(parent);
+        if(returnVal == JFileChooser.APPROVE_OPTION) {
+            path = chooser.getSelectedFile().getPath();
+        }
+        return path;
     }
     
     /**
@@ -553,6 +573,11 @@ public class Expomovil extends javax.swing.JFrame {
         });
 
         agregarFoto.setText("⚲");
+        agregarFoto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarFotoActionPerformed(evt);
+            }
+        });
 
         crearVehiculo.setText("Crear");
         crearVehiculo.addActionListener(new java.awt.event.ActionListener() {
@@ -1134,6 +1159,8 @@ public class Expomovil extends javax.swing.JFrame {
         String nomTemp = this.nombreAgencia.getText();
         String cedTemp = this.cedulaAgencia.getText();
         agregarAgencia(cedTemp, nomTemp);
+        this.nombreAgencia.setText(null);
+        this.cedulaAgencia.setText(null);
     }//GEN-LAST:event_botonCrearAgenciaActionPerformed
 
     private void botonEliminarAgenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarAgenciaActionPerformed
@@ -1146,17 +1173,19 @@ public class Expomovil extends javax.swing.JFrame {
     private void botonConsultarAgenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonConsultarAgenciaActionPerformed
         // TODO add your handling code here:
         this.listaDeAgencias.goToPos(this.listaAgenciaConsultar.getSelectedIndex());
-        JOptionPane.showMessageDialog(null, this.listaDeAgencias.getElement().getNombre()+this.listaDeAgencias.getElement().getNombre(), "Informacion de Agencia", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Nombre: "+this.listaDeAgencias.getElement().getNombre()+"\nCedula Juridica: "+this.listaDeAgencias.getElement().getCedJuridica(), "Informacion de Agencia", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_botonConsultarAgenciaActionPerformed
 
     private void agregarColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarColorActionPerformed
         // TODO add your handling code here:
         this.colores = agregarArreglo(this.colores, this.colorVehiculo.getText());
+        this.colorVehiculo.setText(null);
     }//GEN-LAST:event_agregarColorActionPerformed
 
     private void agregarExtraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarExtraActionPerformed
         // TODO add your handling code here:
-        this.colores = agregarArreglo(this.extras, this.extrasVehiculo.getText());
+        this.extras = agregarArreglo(this.extras, this.extrasVehiculo.getText());
+        this.extrasVehiculo.setText(null);
     }//GEN-LAST:event_agregarExtraActionPerformed
 
     private void crearVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearVehiculoActionPerformed
@@ -1174,6 +1203,16 @@ public class Expomovil extends javax.swing.JFrame {
         this.listaDeAgencias.goToPos(this.agenciaVehiculo.getSelectedIndex());
         Agencia agenciaPertenencia = this.listaDeAgencias.getElement();
         agregarVehiculo(marca, modelo, tipo, descripcion, cilindrada, transmision, combustible, this.colores, this.extras, foto, precio, cantidad, agenciaPertenencia);
+        this.marcaVehiculo.setText(null);
+        this.modeloVehiculo.setText(null);
+        this.tipoVehiculo.setText(null);
+        this.descripcionVehiculo.setText(null);
+        this.cilindradaVehiculo.setText(null);
+        this.combustibleVehiculo.setText(null);
+        this.transmisionVehiculo.setText(null);
+        this.fotoVehiculo.setText(null);
+        this.precioVehiculo.setText(null);
+        this.cantidadVehiculo.setText(null);
     }//GEN-LAST:event_crearVehiculoActionPerformed
 
     private void eliminarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarVehiculoActionPerformed
@@ -1187,12 +1226,21 @@ public class Expomovil extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.listaDeVehiculos.goToPos(this.listaVehiculoModificar.getSelectedIndex());
         ModificarVehiculo ventanaTemp = new ModificarVehiculo(this.listaDeAgencias, this.listaDeVehiculos.getElement());
+        ventanaTemp.setVisible(true);
+        boolean value = true;
+        while(value) {
+            value = ventanaTemp.getBoolean();
+        }
+        this.listaDeVehiculos.remove();
+        eliminarVehiculo();
+        agregarVehiculo(ventanaTemp.getElement());
     }//GEN-LAST:event_modificarVehiculoActionPerformed
 
     private void consultarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarVehiculoActionPerformed
         // TODO add your handling code here:
         this.listaDeVehiculos.goToPos(this.listaVehiculoConsultar.getSelectedIndex());
         ConsultarVehiculo ventanaTemp = new ConsultarVehiculo(this.listaDeVehiculos.getElement());
+        ventanaTemp.setVisible(true);
     }//GEN-LAST:event_consultarVehiculoActionPerformed
 
     private void solicitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solicitarActionPerformed
@@ -1203,14 +1251,24 @@ public class Expomovil extends javax.swing.JFrame {
         String numero = this.telefonoSolicitar.getText();
         String correo = this.correoSolicitar.getText();
         this.listaDeVehiculos.goToPos(this.vehiculoSolicitar.getSelectedIndex());
-        this.listaDeVehiculos.getElement().setCantidad(this.listaDeVehiculos.getElement().getCantidad()-1);
+        
         Vehiculo vehiculoTemp = this.listaDeVehiculos.getElement();
         agregarCliente(cedula, nombre, direccion, numero, correo, vehiculoTemp);
+        this.cedulaSolicitar.setText(null);
+        this.nombreSolicitar.setText(null);
+        this.direccionSolicitar.setText(null);
+        this.telefonoSolicitar.setText(null);
+        this.correoSolicitar.setText(null);
     }//GEN-LAST:event_solicitarActionPerformed
 
     private void infoEsperaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infoEsperaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_infoEsperaActionPerformed
+
+    private void agregarFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarFotoActionPerformed
+        // TODO add your handling code here:
+        this.fotoVehiculo.setText(agregarFoto(this.getOwner()));
+    }//GEN-LAST:event_agregarFotoActionPerformed
 
     /**
      * @param args the command line arguments
