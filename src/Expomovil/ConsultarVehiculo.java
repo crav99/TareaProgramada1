@@ -37,7 +37,7 @@ public class ConsultarVehiculo extends javax.swing.JFrame {
         this.labelTipo.setText(vehiculo.getTipo());
         this.labelTransmision.setText(vehiculo.getTransmision());
         
-         ImageIcon image = null;
+        ImageIcon image = null;
         image = new ImageIcon(vehiculo.getFoto());
         
         this.labelFoto.setIcon(image);

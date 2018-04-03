@@ -835,6 +835,11 @@ public class Expomovil extends javax.swing.JFrame {
         jScrollPane7.setViewportView(listaVisualizarVehiculos);
 
         visualizarVehiculos.setText("Visualizar");
+        visualizarVehiculos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                visualizarVehiculosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout visualizarLayout = new javax.swing.GroupLayout(visualizar);
         visualizar.setLayout(visualizarLayout);
@@ -1375,6 +1380,10 @@ public class Expomovil extends javax.swing.JFrame {
         // TODO add your handling code here:
         infoCliente(this.listaDeClientes2.getPos(this.listaEsperaNoDisponible.getSelectedIndex()));
     }//GEN-LAST:event_infoEsperaNDActionPerformed
+
+    private void visualizarVehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizarVehiculosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_visualizarVehiculosActionPerformed
 
     /**
      * @param args the command line arguments
