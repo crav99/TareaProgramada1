@@ -6,8 +6,10 @@
 package Expomovil;
 
 import DataStructures.LinkedList;
+import java.awt.Window;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.JFileChooser;
 
 /**
  *
@@ -21,13 +23,15 @@ public class ModificarVehiculo extends javax.swing.JFrame {
     DefaultListModel listaColoresS;
     DefaultListModel listaExtrasS;
     Boolean value;
+    Expomovil main;
 
     /**
      * Creates new form ModificarVehiculo
      * @param agencias
      * @param vehiculo
+     * @param main
      */
-    public ModificarVehiculo(LinkedList agencias, Vehiculo vehiculo) {
+    public ModificarVehiculo(LinkedList agencias, Vehiculo vehiculo, Expomovil main) {
         initComponents();
         this.agencias = agencias;
         this.vehiculo = vehiculo;
@@ -48,13 +52,14 @@ public class ModificarVehiculo extends javax.swing.JFrame {
         this.precioVehiculo.setText(Double.toString(vehiculo.getPrecio()));
         this.tipoVehiculo.setText(vehiculo.getTipo());
         this.transmisionVehiculo.setText(vehiculo.getTransmision());
-        this.value = false;
+        this.value = true;
         agregarExtras(vehiculo.getExtras());
         agregarColores(vehiculo.getColores());
         this.agencias.goToStart();
         while(this.agencias.next()) {
             this.listaAgenciasS.addElement(this.agencias.getElement().getNombre());
         }
+        this.main = main;
     }
     
     public void agregarListaAgenciasS(String elemento) {
@@ -101,7 +106,7 @@ public class ModificarVehiculo extends javax.swing.JFrame {
         for(int x = 0; x < array.length; x++) {
             arrayTemp[x] = array[x];
         }
-        arrayTemp[-1] = add;
+        arrayTemp[arrayTemp.length-1] = add;
         return arrayTemp;
     }
     
@@ -123,6 +128,17 @@ public class ModificarVehiculo extends javax.swing.JFrame {
     
     public Boolean getBoolean() {
         return this.value;
+    }
+    
+    public String agregarFoto(Window parent){
+        // TODO Auto-generated catch block
+        String path = "";
+        JFileChooser chooser = new JFileChooser();
+        int returnVal = chooser.showOpenDialog(parent);
+        if(returnVal == JFileChooser.APPROVE_OPTION) {
+            path = chooser.getSelectedFile().getPath();
+        }
+        return path;
     }
 
     /**
@@ -214,6 +230,11 @@ public class ModificarVehiculo extends javax.swing.JFrame {
         });
 
         agregarFoto.setText("⚲");
+        agregarFoto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarFotoActionPerformed(evt);
+            }
+        });
 
         modificarVehiculo.setText("Modificar");
         modificarVehiculo.addActionListener(new java.awt.event.ActionListener() {
@@ -412,6 +433,7 @@ public class ModificarVehiculo extends javax.swing.JFrame {
     private void agregarColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarColorActionPerformed
         // TODO add your handling code here:
         String[] newArray = agregarArreglo(this.vehiculo.getColores(), this.colorVehiculo.getText());
+        this.colorVehiculo.setText(null);
         this.vehiculo.setColores(newArray);
         agregarColores(vehiculo.getColores());
     }//GEN-LAST:event_agregarColorActionPerformed
@@ -419,6 +441,7 @@ public class ModificarVehiculo extends javax.swing.JFrame {
     private void agregarExtraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarExtraActionPerformed
         // TODO add your handling code here:
         String[] newArray = agregarArreglo(this.vehiculo.getExtras(), this.extrasVehiculo.getText());
+        this.extrasVehiculo.setText(null);
         this.vehiculo.setExtras(newArray);
         agregarExtras(vehiculo.getExtras());
     }//GEN-LAST:event_agregarExtraActionPerformed
@@ -453,7 +476,16 @@ public class ModificarVehiculo extends javax.swing.JFrame {
         Agencia agenciaPertenencia = this.agencias.getElement();
         this.vehiculo = new Vehiculo(marca, modelo, tipo, descripcion, cilindrada, transmision, combustible, this.vehiculo.getColores(), this.vehiculo.getExtras(), foto, precio, cantidad, agenciaPertenencia);
         this.setVisible(false);
+        this.main.setVisible(true);
+        this.main.listaDeVehiculos.remove();
+        this.main.eliminarVehiculo();
+        this.main.agregarVehiculo(vehiculo);
     }//GEN-LAST:event_modificarVehiculoActionPerformed
+
+    private void agregarFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarFotoActionPerformed
+        // TODO add your handling code here:
+        this.fotoVehiculo.setText(agregarFoto(this.getOwner()));
+    }//GEN-LAST:event_agregarFotoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> agenciaVehiculo;

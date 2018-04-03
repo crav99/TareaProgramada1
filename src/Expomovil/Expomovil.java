@@ -89,9 +89,9 @@ public class Expomovil extends javax.swing.JFrame {
     
     public void agregarVehiculo(Vehiculo vehiculoTemp) {
         this.listaDeVehiculos.append(vehiculoTemp);
-        agregarListaVehiculos(vehiculoTemp.getMarca()+vehiculoTemp.getModelo());
-        agregarListaVisualizar(vehiculoTemp.getMarca()+vehiculoTemp.getModelo());
-        agregarListaVehiculosS(vehiculoTemp.getMarca()+vehiculoTemp.getModelo());
+        agregarListaVehiculos(vehiculoTemp.getMarca()+" "+vehiculoTemp.getModelo());
+        agregarListaVisualizar(vehiculoTemp.getMarca()+" "+vehiculoTemp.getModelo());
+        agregarListaVehiculosS(vehiculoTemp.getMarca()+" "+vehiculoTemp.getModelo());
     }
     
     public void agregarCliente(String cedula, String nombre, String direccion, String numero, String correo, Vehiculo vehiculo) {
@@ -169,27 +169,24 @@ public class Expomovil extends javax.swing.JFrame {
     public void eliminarListaAgencias() {
         this.listaAgencias.clear();
         this.listaDeAgencias.goToStart();
-        while (this.listaDeAgencias.getElement() != null) {
+        while (this.listaDeAgencias.next()) {
             agregarListaAgencias(this.listaDeAgencias.getElement().getNombre());
-            this.listaDeAgencias.next();
         }
     }
     
     public void eliminarListaVehiculos() {
         this.listaVehiculos.clear();
         this.listaDeVehiculos.goToStart();
-        while(this.listaDeVehiculos.getElement() != null) {
-            agregarListaVehiculos(this.listaDeVehiculos.getElement().getMarca()+this.listaDeVehiculos.getElement().getModelo());
-            this.listaDeVehiculos.next();
+        while(this.listaDeVehiculos.next()) {
+            agregarListaVehiculos(this.listaDeVehiculos.getElement().getMarca()+" "+this.listaDeVehiculos.getElement().getModelo());
         }
     }
     
     public void eliminarListaVisualizar() {
         this.listaVisualizar.clear();
         this.listaDeVehiculos.goToStart();
-        while(this.listaDeVehiculos.getElement() != null) {
-            agregarListaVisualizar(this.listaDeVehiculos.getElement().getMarca()+this.listaDeVehiculos.getElement().getModelo());
-            this.listaDeVehiculos.next();
+        while(this.listaDeVehiculos.next()) {
+            agregarListaVisualizar(this.listaDeVehiculos.getElement().getMarca()+" "+this.listaDeVehiculos.getElement().getModelo());
         }
     }
     
@@ -204,18 +201,16 @@ public class Expomovil extends javax.swing.JFrame {
     public void eliminarListaAgenciasS() {
         this.listaAgenciasS.removeAllElements();
         this.listaDeAgencias.goToStart();
-        while (this.listaDeAgencias.getElement() != null) {
+        while (this.listaDeAgencias.next()) {
             agregarListaAgenciasS(this.listaDeAgencias.getElement().getNombre());
-            this.listaDeAgencias.next();
         }
     }
     
     public void eliminarListaVehiculosS() {
         this.listaVehiculosS.removeAllElements();
         this.listaDeVehiculos.goToStart();
-        while(this.listaDeVehiculos.getElement() != null) {
-            agregarListaVehiculosS(this.listaDeVehiculos.getElement().getMarca()+this.listaDeVehiculos.getElement().getModelo());
-            this.listaDeVehiculos.next();
+        while(this.listaDeVehiculos.next()) {
+            agregarListaVehiculosS(this.listaDeVehiculos.getElement().getMarca()+" "+this.listaDeVehiculos.getElement().getModelo());
         }
     }
     
@@ -1227,8 +1222,9 @@ public class Expomovil extends javax.swing.JFrame {
         this.listaDeAgencias.goToPos(this.listaAgenciaEliminar.getSelectedIndex());
         this.listaDeVehiculos.goToStart();
         while(this.listaDeVehiculos.next()) {
-            if(this.listaDeVehiculos.getElement().getAgencia() == this.listaDeAgencias.getElement()) {
+            if(this.listaDeVehiculos.getElement().getAgencia().getNombre() == this.listaDeAgencias.getElement().getNombre()) {
                 this.listaDeVehiculos.remove();
+                this.listaDeVehiculos.goToStart();
             }
         }
         this.listaDeAgencias.remove();
@@ -1279,6 +1275,8 @@ public class Expomovil extends javax.swing.JFrame {
         this.fotoVehiculo.setText(null);
         this.precioVehiculo.setText(null);
         this.cantidadVehiculo.setText(null);
+        this.colores = new String[0];
+        this.extras = new String[0];
     }//GEN-LAST:event_crearVehiculoActionPerformed
 
     private void eliminarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarVehiculoActionPerformed
@@ -1291,15 +1289,9 @@ public class Expomovil extends javax.swing.JFrame {
     private void modificarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarVehiculoActionPerformed
         // TODO add your handling code here:
         this.listaDeVehiculos.goToPos(this.listaVehiculoModificar.getSelectedIndex());
-        ModificarVehiculo ventanaTemp = new ModificarVehiculo(this.listaDeAgencias, this.listaDeVehiculos.getElement());
+        ModificarVehiculo ventanaTemp = new ModificarVehiculo(this.listaDeAgencias, this.listaDeVehiculos.getElement(), this);
         ventanaTemp.setVisible(true);
-        boolean value = true;
-        while(value) {
-            value = ventanaTemp.getBoolean();
-        }
-        this.listaDeVehiculos.remove();
-        eliminarVehiculo();
-        agregarVehiculo(ventanaTemp.getElement());
+        setVisible(false);
     }//GEN-LAST:event_modificarVehiculoActionPerformed
 
     private void consultarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarVehiculoActionPerformed
