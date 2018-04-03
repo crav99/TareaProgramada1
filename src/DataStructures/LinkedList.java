@@ -134,7 +134,6 @@ public class LinkedList<T> {
 
     public boolean next() {
         if (this.current == this.tail) {
-            System.out.println("Actualmente en último nodo, no se puede avanzar");
             return false;
         }
         this.current = this.current.getNext();
@@ -144,7 +143,6 @@ public class LinkedList<T> {
 
     public boolean previous() {
         if (this.current == this.head) {
-            System.out.println("Actualmente en primer nodo, no se puede retroceder");
             return false;
         }
         Node temp = head;

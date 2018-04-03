@@ -82,9 +82,9 @@ public class Expomovil extends javax.swing.JFrame {
             transmision, colores, extras, 
             foto, precio, cantidad, agencia);
         this.listaDeVehiculos.append(vehiculoTemp);
-        agregarListaVehiculos(vehiculoTemp.getMarca()+vehiculoTemp.getModelo());
-        agregarListaVisualizar(vehiculoTemp.getMarca()+vehiculoTemp.getModelo());
-        agregarListaVehiculosS(vehiculoTemp.getMarca()+vehiculoTemp.getModelo());
+        agregarListaVehiculos(vehiculoTemp.getMarca()+" "+vehiculoTemp.getModelo());
+        agregarListaVisualizar(vehiculoTemp.getMarca()+" "+vehiculoTemp.getModelo());
+        agregarListaVehiculosS(vehiculoTemp.getMarca()+" "+vehiculoTemp.getModelo());
     }
     
     public void agregarVehiculo(Vehiculo vehiculoTemp) {
@@ -251,6 +251,20 @@ public class Expomovil extends javax.swing.JFrame {
         return path;
     }
     
+    public void infoCliente(Cliente info) {
+        JOptionPane.showMessageDialog(null, "Nombre: "+ info.getNombre()
+                +"\nCedula: "+ info.getCedula()
+                +"\nCorreo: "+ info.getCorreo()
+                +"\nNumero: "+ info.getNumero()
+                +"\nDireccion: "+ info.getDireccion()
+                +"\nVehiculo: "+ info.getVehiculo().getMarca()+" "+ info.getVehiculo().getModelo(), "Info Cliente", JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    public void enviarCorreo(String to, String message, String subject){
+        SendEmail correo = new SendEmail(to, message, subject);
+        correo.send();
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -365,6 +379,10 @@ public class Expomovil extends javax.swing.JFrame {
         infoEspera = new javax.swing.JButton();
         jScrollPane8 = new javax.swing.JScrollPane();
         listaEsperaNoDisponible = new javax.swing.JList<>();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        atenderEsperaND = new javax.swing.JButton();
+        infoEsperaND = new javax.swing.JButton();
         busquedaAvanzada = new javax.swing.JPanel();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
@@ -396,9 +414,9 @@ public class Expomovil extends javax.swing.JFrame {
             .addGroup(homeLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(intro1, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
+                    .addComponent(intro1, javax.swing.GroupLayout.DEFAULT_SIZE, 652, Short.MAX_VALUE)
                     .addComponent(intro2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(intro3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE))
+                    .addComponent(intro3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 652, Short.MAX_VALUE))
                 .addContainerGap())
         );
         homeLayout.setVerticalGroup(
@@ -441,7 +459,7 @@ public class Expomovil extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(nombreAgencia)
                         .addComponent(cedulaAgencia, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)))
-                .addContainerGap(171, Short.MAX_VALUE))
+                .addContainerGap(183, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -482,7 +500,7 @@ public class Expomovil extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(254, 254, 254)
                         .addComponent(botonEliminarAgencia)))
-                .addContainerGap(177, Short.MAX_VALUE))
+                .addContainerGap(189, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -517,7 +535,7 @@ public class Expomovil extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(253, 253, 253)
                         .addComponent(botonConsultarAgencia)))
-                .addContainerGap(177, Short.MAX_VALUE))
+                .addContainerGap(189, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -652,7 +670,7 @@ public class Expomovil extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(265, 265, 265)
                         .addComponent(crearVehiculo)))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -728,7 +746,7 @@ public class Expomovil extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(255, 255, 255)
                         .addComponent(eliminarVehiculo)))
-                .addContainerGap(181, Short.MAX_VALUE))
+                .addContainerGap(193, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -763,7 +781,7 @@ public class Expomovil extends javax.swing.JFrame {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(157, 157, 157)
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(181, Short.MAX_VALUE))
+                .addContainerGap(193, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -798,7 +816,7 @@ public class Expomovil extends javax.swing.JFrame {
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGap(254, 254, 254)
                         .addComponent(consultarVehiculo)))
-                .addContainerGap(181, Short.MAX_VALUE))
+                .addContainerGap(193, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -827,7 +845,7 @@ public class Expomovil extends javax.swing.JFrame {
                 .addGroup(visualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, visualizarLayout.createSequentialGroup()
                         .addComponent(elegirAgencia, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                         .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(36, 36, 36))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, visualizarLayout.createSequentialGroup()
@@ -899,7 +917,7 @@ public class Expomovil extends javax.swing.JFrame {
                             .addGroup(solicitarVehiculoLayout.createSequentialGroup()
                                 .addGap(9, 9, 9)
                                 .addComponent(solicitar)
-                                .addGap(0, 118, Short.MAX_VALUE)))))
+                                .addGap(0, 130, Short.MAX_VALUE)))))
                 .addGap(197, 197, 197))
         );
         solicitarVehiculoLayout.setVerticalGroup(
@@ -974,13 +992,6 @@ public class Expomovil extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(labelNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE))
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(jLabel28)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(jLabel29)
-                        .addGap(7, 7, 7)
-                        .addComponent(labelVehiculo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jLabel27)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(labelCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -991,7 +1002,14 @@ public class Expomovil extends javax.swing.JFrame {
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jLabel23)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelCedula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(labelCedula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jLabel28)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jLabel29)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelVehiculo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
@@ -999,13 +1017,13 @@ public class Expomovil extends javax.swing.JFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel22)
-                    .addComponent(labelNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel23)
-                    .addComponent(labelCedula, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelCedula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(labelNumero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1013,21 +1031,25 @@ public class Expomovil extends javax.swing.JFrame {
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(labelCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(jLabel29)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel28)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(labelVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(labelVehiculo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel28)
+                .addGap(28, 28, 28)
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
 
         jScrollPane2.setViewportView(listaAtenderEspera);
 
         atenderEspera.setText("Atender");
+        atenderEspera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atenderEsperaActionPerformed(evt);
+            }
+        });
 
         infoEspera.setText("Info.");
         infoEspera.addActionListener(new java.awt.event.ActionListener() {
@@ -1038,6 +1060,24 @@ public class Expomovil extends javax.swing.JFrame {
 
         jScrollPane8.setViewportView(listaEsperaNoDisponible);
 
+        jLabel24.setText("Lista Espera Inicial");
+
+        jLabel25.setText("Lista Espera N.D");
+
+        atenderEsperaND.setText("Atender");
+        atenderEsperaND.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atenderEsperaNDActionPerformed(evt);
+            }
+        });
+
+        infoEsperaND.setText("Info.");
+        infoEsperaND.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                infoEsperaNDActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout visualizarListaLayout = new javax.swing.GroupLayout(visualizarLista);
         visualizarLista.setLayout(visualizarListaLayout);
         visualizarListaLayout.setHorizontalGroup(
@@ -1045,20 +1085,32 @@ public class Expomovil extends javax.swing.JFrame {
             .addGroup(visualizarListaLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(visualizarListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(18, 18, 18)
+                .addGroup(visualizarListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(atenderEspera, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel24)
+                    .addGroup(visualizarListaLayout.createSequentialGroup()
+                        .addComponent(atenderEspera, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(infoEspera, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, Short.MAX_VALUE)
-                .addGroup(visualizarListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(visualizarListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(infoEspera, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel25)
+                    .addGroup(visualizarListaLayout.createSequentialGroup()
+                        .addComponent(atenderEsperaND, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(infoEsperaND, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         visualizarListaLayout.setVerticalGroup(
             visualizarListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(visualizarListaLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(8, 8, 8)
+                .addGroup(visualizarListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel24)
+                    .addComponent(jLabel25))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(visualizarListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(visualizarListaLayout.createSequentialGroup()
                         .addGroup(visualizarListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -1067,9 +1119,11 @@ public class Expomovil extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(visualizarListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(atenderEspera)
-                            .addComponent(infoEspera)))
+                            .addComponent(infoEspera)
+                            .addComponent(atenderEsperaND)
+                            .addComponent(infoEsperaND)))
                     .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         listaEspera.addTab("Atencion Lista de Espera", visualizarLista);
@@ -1108,7 +1162,7 @@ public class Expomovil extends javax.swing.JFrame {
                     .addGroup(busquedaAvanzadaLayout.createSequentialGroup()
                         .addGap(214, 214, 214)
                         .addComponent(realizarBusqueda)))
-                .addContainerGap(285, Short.MAX_VALUE))
+                .addContainerGap(297, Short.MAX_VALUE))
         );
         busquedaAvanzadaLayout.setVerticalGroup(
             busquedaAvanzadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1166,8 +1220,15 @@ public class Expomovil extends javax.swing.JFrame {
     private void botonEliminarAgenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarAgenciaActionPerformed
         // TODO add your handling code here:
         this.listaDeAgencias.goToPos(this.listaAgenciaEliminar.getSelectedIndex());
+        this.listaDeVehiculos.goToStart();
+        while(this.listaDeVehiculos.next()) {
+            if(this.listaDeVehiculos.getElement().getAgencia() == this.listaDeAgencias.getElement()) {
+                this.listaDeVehiculos.remove();
+            }
+        }
         this.listaDeAgencias.remove();
         eliminarAgencia();
+        eliminarVehiculo();
     }//GEN-LAST:event_botonEliminarAgenciaActionPerformed
 
     private void botonConsultarAgenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonConsultarAgenciaActionPerformed
@@ -1251,7 +1312,6 @@ public class Expomovil extends javax.swing.JFrame {
         String numero = this.telefonoSolicitar.getText();
         String correo = this.correoSolicitar.getText();
         this.listaDeVehiculos.goToPos(this.vehiculoSolicitar.getSelectedIndex());
-        
         Vehiculo vehiculoTemp = this.listaDeVehiculos.getElement();
         agregarCliente(cedula, nombre, direccion, numero, correo, vehiculoTemp);
         this.cedulaSolicitar.setText(null);
@@ -1263,12 +1323,58 @@ public class Expomovil extends javax.swing.JFrame {
 
     private void infoEsperaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infoEsperaActionPerformed
         // TODO add your handling code here:
+        infoCliente(this.listaDeClientes.getPos(this.listaAtenderEspera.getSelectedIndex()));
     }//GEN-LAST:event_infoEsperaActionPerformed
 
     private void agregarFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarFotoActionPerformed
         // TODO add your handling code here:
         this.fotoVehiculo.setText(agregarFoto(this.getOwner()));
     }//GEN-LAST:event_agregarFotoActionPerformed
+
+    private void atenderEsperaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atenderEsperaActionPerformed
+        // TODO add your handling code here:
+        Cliente atendiendo = this.listaDeClientes.dequeue();
+        if(atendiendo.getVehiculo().getCantidad() != 0) {
+            this.labelCedula.setText(atendiendo.getCedula());
+            this.labelCorreo.setText(atendiendo.getCorreo());
+            this.labelDireccion.setText(atendiendo.getDireccion());
+            this.labelNombre.setText(atendiendo.getNombre());
+            this.labelNumero.setText(atendiendo.getNumero());
+            this.labelVehiculo.setText(atendiendo.getVehiculo().getMarca()+" "+atendiendo.getVehiculo().getModelo());
+            atendiendo.getVehiculo().setCantidad(atendiendo.getVehiculo().getCantidad() - 1);
+            enviarCorreo(atendiendo.getCorreo(), "Su vehiculo está disponible y será entregado mañana.", "Vehiculo Disponible");
+        }else {
+            this.listaDeClientes2.enqueue(atendiendo);
+            agregarListaEsperaNoDisponibleVisualizar(atendiendo.getNombre());
+            enviarCorreo(atendiendo.getCorreo(), "Su vehiculo no está disponible y usted será enviado a otra lista de espera.", "Vehiculo NO Disponible");
+        }
+        eliminarListaEsperaVisualizar();
+    }//GEN-LAST:event_atenderEsperaActionPerformed
+
+    private void atenderEsperaNDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atenderEsperaNDActionPerformed
+        // TODO add your handling code here:
+        Cliente atendiendo = this.listaDeClientes2.dequeue();
+        if(atendiendo.getVehiculo().getCantidad() != 0) {
+            this.labelCedula.setText(atendiendo.getCedula());
+            this.labelCorreo.setText(atendiendo.getCorreo());
+            this.labelDireccion.setText(atendiendo.getDireccion());
+            this.labelNombre.setText(atendiendo.getNombre());
+            this.labelNumero.setText(atendiendo.getNumero());
+            this.labelVehiculo.setText(atendiendo.getVehiculo().getMarca()+" "+atendiendo.getVehiculo().getModelo());
+            atendiendo.getVehiculo().setCantidad(atendiendo.getVehiculo().getCantidad() - 1);
+            enviarCorreo(atendiendo.getCorreo(), "Su vehiculo está disponible y será entregado mañana.", "Vehiculo Disponible");
+        }else {
+            this.listaDeClientes2.enqueue(atendiendo);
+            agregarListaEsperaNoDisponibleVisualizar(atendiendo.getNombre());
+            enviarCorreo(atendiendo.getCorreo(), "Su vehiculo no está disponible y usted será enviado a otra lista de espera.", "Vehiculo NO Disponible");
+        }
+        eliminarListaEsperaNoDisponibleVisualizar();
+    }//GEN-LAST:event_atenderEsperaNDActionPerformed
+
+    private void infoEsperaNDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infoEsperaNDActionPerformed
+        // TODO add your handling code here:
+        infoCliente(this.listaDeClientes2.getPos(this.listaEsperaNoDisponible.getSelectedIndex()));
+    }//GEN-LAST:event_infoEsperaNDActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1314,6 +1420,7 @@ public class Expomovil extends javax.swing.JFrame {
     private javax.swing.JButton agregarExtra;
     private javax.swing.JButton agregarFoto;
     private javax.swing.JButton atenderEspera;
+    private javax.swing.JButton atenderEsperaND;
     private javax.swing.JButton botonConsultarAgencia;
     private javax.swing.JButton botonCrearAgencia;
     private javax.swing.JButton botonEliminarAgencia;
@@ -1336,6 +1443,7 @@ public class Expomovil extends javax.swing.JFrame {
     private javax.swing.JTextField fotoVehiculo;
     private javax.swing.JPanel home;
     private javax.swing.JButton infoEspera;
+    private javax.swing.JButton infoEsperaND;
     private javax.swing.JLabel intro1;
     private javax.swing.JLabel intro2;
     private javax.swing.JLabel intro3;
@@ -1355,6 +1463,8 @@ public class Expomovil extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;

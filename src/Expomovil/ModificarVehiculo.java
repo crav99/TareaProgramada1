@@ -24,6 +24,8 @@ public class ModificarVehiculo extends javax.swing.JFrame {
 
     /**
      * Creates new form ModificarVehiculo
+     * @param agencias
+     * @param vehiculo
      */
     public ModificarVehiculo(LinkedList agencias, Vehiculo vehiculo) {
         initComponents();
@@ -49,6 +51,10 @@ public class ModificarVehiculo extends javax.swing.JFrame {
         this.value = false;
         agregarExtras(vehiculo.getExtras());
         agregarColores(vehiculo.getColores());
+        this.agencias.goToStart();
+        while(this.agencias.next()) {
+            this.listaAgenciasS.addElement(this.agencias.getElement().getNombre());
+        }
     }
     
     public void agregarListaAgenciasS(String elemento) {

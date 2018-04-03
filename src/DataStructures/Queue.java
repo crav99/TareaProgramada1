@@ -160,4 +160,13 @@ public class Queue<T> {
         }
     }
     
+    public T getPos(int pos) {
+        Node<T> current = this.front.getNext();
+        int tPos = 0;
+        while(pos > tPos) {
+            current = current.getNext();
+        }
+        return current.getElement();
+    }
+    
 }
