@@ -6,6 +6,7 @@
 package Expomovil;
 
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -35,6 +36,12 @@ public class ConsultarVehiculo extends javax.swing.JFrame {
         this.labelPrecio.setText(Double.toString(vehiculo.getPrecio()));
         this.labelTipo.setText(vehiculo.getTipo());
         this.labelTransmision.setText(vehiculo.getTransmision());
+        
+         ImageIcon image = null;
+        image = new ImageIcon(vehiculo.getFoto());
+        
+        this.labelFoto.setIcon(image);
+        
         agregarExtras(vehiculo.getExtras());
         agregarColores(vehiculo.getColores());
     }
@@ -64,6 +71,7 @@ public class ConsultarVehiculo extends javax.swing.JFrame {
 
         VentanaVehiculo = new javax.swing.JPanel();
         panelFoto = new javax.swing.JPanel();
+        labelFoto = new javax.swing.JLabel();
         labelMarca = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         listaColor = new javax.swing.JList<>();
@@ -87,11 +95,17 @@ public class ConsultarVehiculo extends javax.swing.JFrame {
         panelFoto.setLayout(panelFotoLayout);
         panelFotoLayout.setHorizontalGroup(
             panelFotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 214, Short.MAX_VALUE)
+            .addGroup(panelFotoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelFoto)
+                .addContainerGap(170, Short.MAX_VALUE))
         );
         panelFotoLayout.setVerticalGroup(
             panelFotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(panelFotoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelFoto)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         labelMarca.setText("jLabel1");
@@ -243,6 +257,7 @@ public class ConsultarVehiculo extends javax.swing.JFrame {
     private javax.swing.JLabel labelCilindrada;
     private javax.swing.JLabel labelCombustible;
     private javax.swing.JLabel labelDescripcion;
+    private javax.swing.JLabel labelFoto;
     private javax.swing.JLabel labelMarca;
     private javax.swing.JLabel labelModelo;
     private javax.swing.JLabel labelPrecio;
