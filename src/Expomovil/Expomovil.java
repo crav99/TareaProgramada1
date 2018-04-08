@@ -284,8 +284,7 @@ public class Expomovil extends javax.swing.JFrame {
             }
             this.listaDeVehiculos.next();
         }
-        vehiculoActual = (Vehiculo) this.listaBusquedaTemp.getElement();
-        System.out.println(vehiculoActual.getModelo());
+        
     }
     
     /**
