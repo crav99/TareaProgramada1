@@ -7,11 +7,23 @@ package Expomovil;
 
 import DataStructures.LinkedList;
 import DataStructures.Queue;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
 import java.awt.Window;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.border.MatteBorder;
 
 /**
  *
@@ -22,9 +34,9 @@ public class Expomovil extends javax.swing.JFrame {
     //atributos
     DefaultListModel listaAgencias;
     DefaultListModel listaVehiculos;
-    DefaultListModel listaVisualizar;
     DefaultListModel listaEsperaVisualizar;
     DefaultListModel listaEsperaNoDisponibleVisualizar;
+    DefaultComboBoxModel listaElegirAgencia;
     DefaultComboBoxModel listaAgenciasS;
     DefaultComboBoxModel listaVehiculosS;
     LinkedList<Agencia> listaDeAgencias;
@@ -46,16 +58,15 @@ public class Expomovil extends javax.swing.JFrame {
         this.listaVehiculoConsultar.setModel(this.listaVehiculos);
         this.listaVehiculoEliminar.setModel(this.listaVehiculos);
         this.listaVehiculoModificar.setModel(this.listaVehiculos);
-        this.listaVisualizar = new DefaultListModel();
-        this.listaVisualizarVehiculos.setModel(this.listaVisualizar);
         this.listaEsperaVisualizar = new DefaultListModel();
         this.listaAtenderEspera.setModel(this.listaEsperaVisualizar);
         this.listaEsperaNoDisponibleVisualizar = new DefaultListModel();
         this.listaEsperaNoDisponible.setModel(this.listaEsperaNoDisponibleVisualizar);
         this.listaAgenciasS = new DefaultComboBoxModel();
         this.agenciaVehiculo.setModel(this.listaAgenciasS);
-        this.elegirAgencia.setModel(this.listaAgenciasS);
         this.agenciaBusqueda.setModel(this.listaAgenciasS);
+        this.listaElegirAgencia = new DefaultComboBoxModel();
+        this.elegirAgencia.setModel(this.listaElegirAgencia);
         this.listaVehiculosS = new DefaultComboBoxModel();
         this.vehiculoSolicitar.setModel(this.listaVehiculosS);
         this.listaDeAgencias = new LinkedList();
@@ -64,6 +75,7 @@ public class Expomovil extends javax.swing.JFrame {
         this.listaDeClientes2 = new Queue();
         this.colores = new String[0];
         this.extras = new String[0];
+        agregarListaElegirAgencia("All");
     }
     
     public void agregarAgencia(String cedJuridica, String nombre) {
@@ -71,6 +83,7 @@ public class Expomovil extends javax.swing.JFrame {
         this.listaDeAgencias.append(agenciaTemp);
         agregarListaAgencias(agenciaTemp.getNombre());
         agregarListaAgenciasS(agenciaTemp.getNombre());
+        agregarListaElegirAgencia(agenciaTemp.getNombre());
     }
     
     public void agregarVehiculo(String marca, String modelo, String tipo, 
@@ -83,14 +96,22 @@ public class Expomovil extends javax.swing.JFrame {
             foto, precio, cantidad, agencia);
         this.listaDeVehiculos.append(vehiculoTemp);
         agregarListaVehiculos(vehiculoTemp.getMarca()+" "+vehiculoTemp.getModelo());
-        agregarListaVisualizar(vehiculoTemp.getMarca()+" "+vehiculoTemp.getModelo());
+        if((String)this.elegirAgencia.getSelectedItem() == "All") {
+            agregarTodos();
+        }else {
+            agregarPorAgencia((String)this.elegirAgencia.getSelectedItem());
+        }
         agregarListaVehiculosS(vehiculoTemp.getMarca()+" "+vehiculoTemp.getModelo());
     }
     
     public void agregarVehiculo(Vehiculo vehiculoTemp) {
         this.listaDeVehiculos.append(vehiculoTemp);
         agregarListaVehiculos(vehiculoTemp.getMarca()+" "+vehiculoTemp.getModelo());
-        agregarListaVisualizar(vehiculoTemp.getMarca()+" "+vehiculoTemp.getModelo());
+        if((String)this.elegirAgencia.getSelectedItem() == "All") {
+            agregarTodos();
+        }else {
+            agregarPorAgencia((String)this.elegirAgencia.getSelectedItem());
+        }
         agregarListaVehiculosS(vehiculoTemp.getMarca()+" "+vehiculoTemp.getModelo());
     }
     
@@ -112,8 +133,12 @@ public class Expomovil extends javax.swing.JFrame {
     
     public void eliminarVehiculo() {
         eliminarListaVehiculos();
-        eliminarListaVisualizar();
         eliminarListaVehiculosS();
+        if((String)this.elegirAgencia.getSelectedItem() == "All") {
+            agregarTodos();
+        }else {
+            agregarPorAgencia((String)this.elegirAgencia.getSelectedItem());
+        }
     }
     
     public void eliminarCliente() {
@@ -146,10 +171,6 @@ public class Expomovil extends javax.swing.JFrame {
         this.listaVehiculos.addElement(elemento);
     }
     
-    public void agregarListaVisualizar(String elemento) {
-        this.listaVisualizar.addElement(elemento);
-    }
-    
     public void agregarListaEsperaVisualizar(String elemento) {
         this.listaEsperaVisualizar.addElement(elemento);
     }
@@ -160,6 +181,10 @@ public class Expomovil extends javax.swing.JFrame {
     
     public void agregarListaAgenciasS(String elemento) {
         this.listaAgenciasS.addElement(elemento);
+    }
+    
+    public void agregarListaElegirAgencia(String element) {
+        this.listaElegirAgencia.addElement(element);
     }
     
     public void agregarListaVehiculosS(String elemento) {
@@ -174,19 +199,20 @@ public class Expomovil extends javax.swing.JFrame {
         }
     }
     
+    public void eliminarListaElegirAgencia() {
+        this.listaElegirAgencia.removeAllElements();
+        agregarListaElegirAgencia("All");
+        this.listaDeAgencias.goToStart();
+        while(this.listaDeAgencias.next()) {
+            agregarListaElegirAgencia(this.listaDeAgencias.getElement().getNombre());
+        }
+    }
+    
     public void eliminarListaVehiculos() {
         this.listaVehiculos.clear();
         this.listaDeVehiculos.goToStart();
         while(this.listaDeVehiculos.next()) {
             agregarListaVehiculos(this.listaDeVehiculos.getElement().getMarca()+" "+this.listaDeVehiculos.getElement().getModelo());
-        }
-    }
-    
-    public void eliminarListaVisualizar() {
-        this.listaVisualizar.clear();
-        this.listaDeVehiculos.goToStart();
-        while(this.listaDeVehiculos.next()) {
-            agregarListaVisualizar(this.listaDeVehiculos.getElement().getMarca()+" "+this.listaDeVehiculos.getElement().getModelo());
         }
     }
     
@@ -258,6 +284,208 @@ public class Expomovil extends javax.swing.JFrame {
     public void enviarCorreo(String to, String message, String subject){
         SendEmail correo = new SendEmail(to, message, subject);
         correo.send();
+    }
+    
+    public void agregarPanelVehiculo(Vehiculo vehiculo) {
+        DefaultListModel listaColoresS;
+        DefaultListModel listaExtrasS;
+        javax.swing.JPanel VentanaVehiculo;
+        javax.swing.JPanel jPanel2;
+        javax.swing.JScrollPane jScrollPane1;
+        javax.swing.JScrollPane jScrollPane2;
+        javax.swing.JLabel labelAgencia;
+        javax.swing.JLabel labelCantidad;
+        javax.swing.JLabel labelCilindrada;
+        javax.swing.JLabel labelCombustible;
+        javax.swing.JLabel labelDescripcion;
+        javax.swing.JLabel labelFoto;
+        javax.swing.JLabel labelMarca;
+        javax.swing.JLabel labelModelo;
+        javax.swing.JLabel labelPrecio;
+        javax.swing.JLabel labelTipo;
+        javax.swing.JLabel labelTransmision;
+        javax.swing.JList<String> listaColor;
+        javax.swing.JList<String> listaExtras;
+        javax.swing.JPanel panelFoto;
+        
+        VentanaVehiculo = new javax.swing.JPanel();
+        panelFoto = new javax.swing.JPanel();
+        labelFoto = new javax.swing.JLabel();
+        labelMarca = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listaColor = new javax.swing.JList<>();
+        labelModelo = new javax.swing.JLabel();
+        labelTipo = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        labelDescripcion = new javax.swing.JLabel();
+        labelCilindrada = new javax.swing.JLabel();
+        labelCombustible = new javax.swing.JLabel();
+        labelTransmision = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        listaExtras = new javax.swing.JList<>();
+        labelPrecio = new javax.swing.JLabel();
+        labelAgencia = new javax.swing.JLabel();
+        labelCantidad = new javax.swing.JLabel();
+        
+        listaColoresS = new DefaultListModel();
+        listaColor.setModel(listaColoresS);
+        listaExtrasS = new DefaultListModel();
+        listaExtras.setModel(listaExtrasS);
+        labelAgencia.setText(vehiculo.getAgencia().getNombre());
+        labelCantidad.setText(Integer.toString(vehiculo.getCantidad()));
+        labelCilindrada.setText(Integer.toString(vehiculo.getCilindrada()));
+        labelCombustible.setText(vehiculo.getCombustible());
+        labelDescripcion.setText(vehiculo.getDescripcion());
+        labelMarca.setText(vehiculo.getMarca());
+        labelModelo.setText(vehiculo.getModelo());
+        labelPrecio.setText(Double.toString(vehiculo.getPrecio()));
+        labelTipo.setText(vehiculo.getTipo());
+        labelTransmision.setText(vehiculo.getTransmision());
+        
+        VentanaVehiculo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        
+        ImageIcon image = null;
+        image = new ImageIcon(vehiculo.getFoto());
+        
+        labelFoto.setIcon(image);
+        
+        listaExtrasS.clear();
+        for(int x = 0; x != vehiculo.getExtras().length; x++) {
+            listaExtrasS.addElement(vehiculo.getExtras()[x]);
+        }
+        
+        listaColoresS.clear();
+        for(int x = 0; x != vehiculo.getColores().length; x++) {
+            listaColoresS.addElement(vehiculo.getColores()[x]);
+        }
+        
+        javax.swing.GroupLayout panelFotoLayout = new javax.swing.GroupLayout(panelFoto);
+        panelFoto.setLayout(panelFotoLayout);
+        panelFotoLayout.setHorizontalGroup(
+            panelFotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelFoto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+        );
+        panelFotoLayout.setVerticalGroup(
+            panelFotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelFoto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        
+        jScrollPane1.setViewportView(listaColor);
+        
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(labelDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+        );
+        
+        jScrollPane2.setViewportView(listaExtras);
+        
+        javax.swing.GroupLayout VentanaVehiculoLayout = new javax.swing.GroupLayout(VentanaVehiculo);
+        VentanaVehiculo.setLayout(VentanaVehiculoLayout);
+        VentanaVehiculoLayout.setHorizontalGroup(
+            VentanaVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(VentanaVehiculoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(VentanaVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(VentanaVehiculoLayout.createSequentialGroup()
+                        .addGroup(VentanaVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(VentanaVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addGroup(VentanaVehiculoLayout.createSequentialGroup()
+                                .addComponent(labelMarca)
+                                .addGap(18, 18, 18)
+                                .addComponent(labelModelo)
+                                .addGap(18, 18, 18)
+                                .addComponent(labelTipo)))
+                        .addGap(18, 18, 18)
+                        .addGroup(VentanaVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelPrecio)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(VentanaVehiculoLayout.createSequentialGroup()
+                        .addGroup(VentanaVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(VentanaVehiculoLayout.createSequentialGroup()
+                                .addComponent(labelAgencia)
+                                .addGap(81, 81, 81)
+                                .addComponent(labelCantidad))
+                            .addGroup(VentanaVehiculoLayout.createSequentialGroup()
+                                .addComponent(labelCilindrada)
+                                .addGap(18, 18, 18)
+                                .addComponent(labelCombustible)
+                                .addGap(18, 18, 18)
+                                .addComponent(labelTransmision)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(98, 98, 98)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        VentanaVehiculoLayout.setVerticalGroup(
+            VentanaVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(VentanaVehiculoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelFoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(VentanaVehiculoLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(VentanaVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelMarca)
+                    .addComponent(labelModelo)
+                    .addComponent(labelTipo)
+                    .addComponent(labelPrecio))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(VentanaVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(VentanaVehiculoLayout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(VentanaVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelCilindrada)
+                    .addComponent(labelCombustible)
+                    .addComponent(labelTransmision))
+                .addGap(7, 7, 7)
+                .addGroup(VentanaVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(VentanaVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labelAgencia)
+                        .addComponent(labelCantidad)))
+                .addContainerGap(35, Short.MAX_VALUE))
+        );
+        
+        this.jPanel11.add(VentanaVehiculo);
+        this.jPanel11.updateUI();
+    }
+    
+    public void agregarPorAgencia(String agencia) {
+        this.listaDeVehiculos.goToStart();
+        this.jPanel11.removeAll();
+        while(this.listaDeVehiculos.next()) {
+            if(this.listaDeVehiculos.getElement().getAgencia().getNombre() == agencia) {
+                agregarPanelVehiculo(this.listaDeVehiculos.getElement());
+            }
+        }
+    }
+    
+    public void agregarTodos() {
+        this.listaDeAgencias.goToStart();
+        this.jPanel11.removeAll();
+        while(this.listaDeAgencias.next()) {
+            this.listaDeVehiculos.goToStart();
+            String agencia = this.listaDeAgencias.getElement().getNombre();
+            while(this.listaDeVehiculos.next()) {
+                if(this.listaDeVehiculos.getElement().getAgencia().getNombre() == agencia) {
+                    agregarPanelVehiculo(this.listaDeVehiculos.getElement());
+                }
+            }
+        }
     }
     
     /**
@@ -334,10 +562,9 @@ public class Expomovil extends javax.swing.JFrame {
         listaVehiculoConsultar = new javax.swing.JList<>();
         consultarVehiculo = new javax.swing.JButton();
         visualizar = new javax.swing.JPanel();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        listaVisualizarVehiculos = new javax.swing.JList<>();
-        visualizarVehiculos = new javax.swing.JButton();
         elegirAgencia = new javax.swing.JComboBox<>();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        jPanel11 = new javax.swing.JPanel();
         listaEspera = new javax.swing.JTabbedPane();
         solicitarVehiculo = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
@@ -827,44 +1054,32 @@ public class Expomovil extends javax.swing.JFrame {
 
         contenedorPrincipal.addTab("Vehiculo", vehiculo);
 
-        jScrollPane7.setViewportView(listaVisualizarVehiculos);
-
-        visualizarVehiculos.setText("Visualizar");
-        visualizarVehiculos.addActionListener(new java.awt.event.ActionListener() {
+        elegirAgencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                visualizarVehiculosActionPerformed(evt);
+                elegirAgenciaActionPerformed(evt);
             }
         });
+
+        jPanel11.setLayout(new javax.swing.BoxLayout(jPanel11, javax.swing.BoxLayout.Y_AXIS));
+        jScrollPane9.setViewportView(jPanel11);
 
         javax.swing.GroupLayout visualizarLayout = new javax.swing.GroupLayout(visualizar);
         visualizar.setLayout(visualizarLayout);
         visualizarLayout.setHorizontalGroup(
             visualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(visualizarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(visualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, visualizarLayout.createSequentialGroup()
-                        .addComponent(elegirAgencia, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
-                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, visualizarLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(visualizarVehiculos)
-                        .addGap(144, 144, 144))))
+                .addGap(203, 203, 203)
+                .addComponent(elegirAgencia, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)
         );
         visualizarLayout.setVerticalGroup(
             visualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(visualizarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(visualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(visualizarLayout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(elegirAgencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(visualizarVehiculos)
-                .addContainerGap(259, Short.MAX_VALUE))
+                .addComponent(elegirAgencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE))
         );
 
         contenedorPrincipal.addTab("Visualizar", visualizar);
@@ -1373,9 +1588,15 @@ public class Expomovil extends javax.swing.JFrame {
         infoCliente(this.listaDeClientes2.getPos(this.listaEsperaNoDisponible.getSelectedIndex()));
     }//GEN-LAST:event_infoEsperaNDActionPerformed
 
-    private void visualizarVehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizarVehiculosActionPerformed
+    private void elegirAgenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_elegirAgenciaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_visualizarVehiculosActionPerformed
+        String element = (String)this.elegirAgencia.getSelectedItem();
+        if(element == "All") {
+            agregarTodos();
+        }else {
+            agregarPorAgencia(element);
+        }
+    }//GEN-LAST:event_elegirAgenciaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1482,6 +1703,7 @@ public class Expomovil extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1496,8 +1718,8 @@ public class Expomovil extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JLabel labelCedula;
     private javax.swing.JLabel labelCorreo;
     private javax.swing.JLabel labelDireccion;
@@ -1512,7 +1734,6 @@ public class Expomovil extends javax.swing.JFrame {
     private javax.swing.JList<String> listaVehiculoConsultar;
     private javax.swing.JList<String> listaVehiculoEliminar;
     private javax.swing.JList<String> listaVehiculoModificar;
-    private javax.swing.JList<String> listaVisualizarVehiculos;
     private javax.swing.JTextField marcaBusqueda;
     private javax.swing.JTextField marcaVehiculo;
     private javax.swing.JTextField modeloBusqueda;
@@ -1532,6 +1753,5 @@ public class Expomovil extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> vehiculoSolicitar;
     private javax.swing.JPanel visualizar;
     private javax.swing.JPanel visualizarLista;
-    private javax.swing.JButton visualizarVehiculos;
     // End of variables declaration//GEN-END:variables
 }
