@@ -5,17 +5,35 @@
  */
 package Expomovil;
 
+import DataStructures.LinkedList;
+import DataStructures.Stack;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author allanvz
  */
 public class BusquedaAvanzada extends javax.swing.JFrame {
-
+    
+    DefaultListModel listaVehiculos;
+    LinkedList<Vehiculo> vehiculos;
+    Stack<Vehiculo> vehiculoAnterior;
     /**
      * Creates new form BusquedaAvanzada
+     * @param vehiculos
      */
-    public BusquedaAvanzada() {
+    public BusquedaAvanzada(LinkedList<Vehiculo> vehiculos) {
         initComponents();
+        this.listaVehiculos = new DefaultListModel();
+        this.listaBusqueda.setModel(this.listaVehiculos);
+        this.vehiculos = vehiculos;
+        this.vehiculos.goToStart();
+        this.listaVehiculos.clear();
+        vehiculoAnterior = new Stack<>();
+        while(this.vehiculos.next()) {
+            this.listaVehiculos.addElement(this.vehiculos.getElement().getMarca()+" "+this.vehiculos.getElement().getModelo());
+        }
     }
 
     /**
@@ -27,22 +45,111 @@ public class BusquedaAvanzada extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listaBusqueda = new javax.swing.JList<>();
+        buttonVisualizar = new javax.swing.JButton();
+        buttonCerrar = new javax.swing.JButton();
+        buttonAnterior = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        listaBusqueda.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(listaBusqueda);
+
+        buttonVisualizar.setText("Visualizar");
+        buttonVisualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonVisualizarActionPerformed(evt);
+            }
+        });
+
+        buttonCerrar.setText("Cerrar");
+        buttonCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCerrarActionPerformed(evt);
+            }
+        });
+
+        buttonAnterior.setText("Anterior");
+        buttonAnterior.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAnteriorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(buttonVisualizar)
+                        .addGap(18, 18, 18)
+                        .addComponent(buttonCerrar)
+                        .addGap(18, 18, 18)
+                        .addComponent(buttonAnterior)
+                        .addContainerGap(70, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonVisualizar)
+                    .addComponent(buttonCerrar)
+                    .addComponent(buttonAnterior))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void buttonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCerrarActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_buttonCerrarActionPerformed
+
+    private void buttonVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVisualizarActionPerformed
+        // TODO add your handling code here:
+        if(this.listaBusqueda.getSelectedIndex() != -1) {
+            this.vehiculos.goToPos(this.listaBusqueda.getSelectedIndex());
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione un vehiculo", "Error", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        Vehiculo vehiculoTemp = this.vehiculos.getElement();
+        ConsultarVehiculo consulta = new ConsultarVehiculo(vehiculoTemp);
+        consulta.setVisible(true);
+        this.vehiculoAnterior.push(vehiculoTemp);
+    }//GEN-LAST:event_buttonVisualizarActionPerformed
+
+    private void buttonAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAnteriorActionPerformed
+        // TODO add your handling code here:
+        if(this.vehiculoAnterior.size() == 0) {
+            JOptionPane.showMessageDialog(null, "No ha visualizado vehiculos", "Error", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        ConsultarVehiculo consulta = new ConsultarVehiculo(this.vehiculoAnterior.pop());
+        consulta.setVisible(true);
+    }//GEN-LAST:event_buttonAnteriorActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonAnterior;
+    private javax.swing.JButton buttonCerrar;
+    private javax.swing.JButton buttonVisualizar;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList<String> listaBusqueda;
     // End of variables declaration//GEN-END:variables
 }

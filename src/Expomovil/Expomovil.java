@@ -36,6 +36,7 @@ public class Expomovil extends javax.swing.JFrame {
     DefaultListModel listaVehiculos;
     DefaultListModel listaEsperaVisualizar;
     DefaultListModel listaEsperaNoDisponibleVisualizar;
+    DefaultListModel listaBusqueda;
     DefaultComboBoxModel listaElegirAgencia;
     DefaultComboBoxModel listaAgenciasS;
     DefaultComboBoxModel listaVehiculosS;
@@ -58,14 +59,15 @@ public class Expomovil extends javax.swing.JFrame {
         this.listaVehiculoConsultar.setModel(this.listaVehiculos);
         this.listaVehiculoEliminar.setModel(this.listaVehiculos);
         this.listaVehiculoModificar.setModel(this.listaVehiculos);
+        this.listaBusqueda = new DefaultListModel();
         this.listaEsperaVisualizar = new DefaultListModel();
         this.listaAtenderEspera.setModel(this.listaEsperaVisualizar);
         this.listaEsperaNoDisponibleVisualizar = new DefaultListModel();
         this.listaEsperaNoDisponible.setModel(this.listaEsperaNoDisponibleVisualizar);
         this.listaAgenciasS = new DefaultComboBoxModel();
         this.agenciaVehiculo.setModel(this.listaAgenciasS);
-        this.agenciaBusqueda.setModel(this.listaAgenciasS);
         this.listaElegirAgencia = new DefaultComboBoxModel();
+        this.agenciaBusqueda.setModel(this.listaElegirAgencia);
         this.elegirAgencia.setModel(this.listaElegirAgencia);
         this.listaVehiculosS = new DefaultComboBoxModel();
         this.vehiculoSolicitar.setModel(this.listaVehiculosS);
@@ -226,6 +228,7 @@ public class Expomovil extends javax.swing.JFrame {
     
     public void eliminarListaAgenciasS() {
         this.listaAgenciasS.removeAllElements();
+        agregarListaAgenciasS("All");
         this.listaDeAgencias.goToStart();
         while (this.listaDeAgencias.next()) {
             agregarListaAgenciasS(this.listaDeAgencias.getElement().getNombre());
@@ -286,6 +289,29 @@ public class Expomovil extends javax.swing.JFrame {
         correo.send();
     }
     
+    public void busquedaAvanzada(String agencia, String marca, String modelo, String precio){
+        String agenciaTemp = agencia;
+        String marcaTemp = marca;
+        String modeloTemp = modelo;
+        this.listaDeVehiculos.goToStart();
+        LinkedList<Vehiculo> listaBusquedaTemp = new LinkedList<>();
+        Vehiculo vehiculoActual;
+        while (this.listaDeVehiculos.next()){
+            vehiculoActual = this.listaDeVehiculos.getElement();
+            if (vehiculoActual.getAgencia().getNombre().equals(agenciaTemp) || agenciaTemp.equals("All")){
+                if(vehiculoActual.getMarca().equals(marcaTemp) || marcaTemp.equals("")){
+                    if (vehiculoActual.getModelo().equals(modeloTemp) || modeloTemp.equals("")){
+                        if(precio.equals("") || vehiculoActual.getPrecio()==Double.parseDouble(precio)){
+                            listaBusquedaTemp.append(vehiculoActual);
+                        }
+                    }
+                }
+            }
+        }
+        BusquedaAvanzada busqueda = new BusquedaAvanzada(listaBusquedaTemp);
+        busqueda.setVisible(true);
+    }
+        
     public void agregarPanelVehiculo(Vehiculo vehiculo) {
         DefaultListModel listaColoresS;
         DefaultListModel listaExtrasS;
@@ -1354,6 +1380,11 @@ public class Expomovil extends javax.swing.JFrame {
         jLabel37.setText("Precio:");
 
         realizarBusqueda.setText("Realizar");
+        realizarBusqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                realizarBusquedaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout busquedaAvanzadaLayout = new javax.swing.GroupLayout(busquedaAvanzada);
         busquedaAvanzada.setLayout(busquedaAvanzadaLayout);
@@ -1427,6 +1458,13 @@ public class Expomovil extends javax.swing.JFrame {
         // TODO add your handling code here:
         String nomTemp = this.nombreAgencia.getText();
         String cedTemp = this.cedulaAgencia.getText();
+        if(nomTemp.equals("")) {
+            JOptionPane.showMessageDialog(null, "Ingrese el nombre de la agencia", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }else if(cedTemp.equals("")) {
+            JOptionPane.showMessageDialog(null, "Ingrese la cedula de la agencia", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         agregarAgencia(cedTemp, nomTemp);
         this.nombreAgencia.setText(null);
         this.cedulaAgencia.setText(null);
@@ -1434,6 +1472,10 @@ public class Expomovil extends javax.swing.JFrame {
 
     private void botonEliminarAgenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarAgenciaActionPerformed
         // TODO add your handling code here:
+        if(this.listaAgenciaEliminar.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(null, "Seleccione la agencia que desea eliminar", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         this.listaDeAgencias.goToPos(this.listaAgenciaEliminar.getSelectedIndex());
         this.listaDeVehiculos.goToStart();
         while(this.listaDeVehiculos.next()) {
@@ -1449,6 +1491,10 @@ public class Expomovil extends javax.swing.JFrame {
 
     private void botonConsultarAgenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonConsultarAgenciaActionPerformed
         // TODO add your handling code here:
+        if(this.listaAgenciaConsultar.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(null, "Seleccione la agencia que desea consultar", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         this.listaDeAgencias.goToPos(this.listaAgenciaConsultar.getSelectedIndex());
         JOptionPane.showMessageDialog(null, "Nombre: "+this.listaDeAgencias.getElement().getNombre()+"\nCedula Juridica: "+this.listaDeAgencias.getElement().getCedJuridica(), "Informacion de Agencia", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_botonConsultarAgenciaActionPerformed
@@ -1471,10 +1517,41 @@ public class Expomovil extends javax.swing.JFrame {
         String modelo = this.modeloVehiculo.getText();
         String tipo = this.tipoVehiculo.getText();
         String descripcion = this.descripcionVehiculo.getText();
-        int cilindrada = Integer.valueOf(this.cilindradaVehiculo.getText());
         String combustible = this.combustibleVehiculo.getText();
         String transmision = this.transmisionVehiculo.getText();
         String foto = this.fotoVehiculo.getText();
+        if(marca.equals("")) {
+            JOptionPane.showMessageDialog(null, "Ingrese la marca", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }else if(modelo.equals("")) {
+            JOptionPane.showMessageDialog(null, "Ingrese el modelo", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }else if(tipo.equals("")) {
+            JOptionPane.showMessageDialog(null, "Ingrese el tipo", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }else if(descripcion.equals("")) {
+            JOptionPane.showMessageDialog(null, "Ingrese la descripcion", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }else if(combustible.equals("")) {
+            JOptionPane.showMessageDialog(null, "Ingrese el tipo de combustible", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }else if(transmision.equals("")) {
+            JOptionPane.showMessageDialog(null, "Ingrese la transmision", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }else if(foto.equals("")) {
+            JOptionPane.showMessageDialog(null, "Seleccione la foto", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }else if(this.cilindradaVehiculo.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Ingrese la cilindrada", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }else if(this.precioVehiculo.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Ingrese el precio", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }else if(this.cantidadVehiculo.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Ingrese la cantidad", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        int cilindrada = Integer.valueOf(this.cilindradaVehiculo.getText());
         double precio = Double.valueOf(this.precioVehiculo.getText());
         int cantidad = Integer.valueOf(this.cantidadVehiculo.getText());
         this.listaDeAgencias.goToPos(this.agenciaVehiculo.getSelectedIndex());
@@ -1496,6 +1573,10 @@ public class Expomovil extends javax.swing.JFrame {
 
     private void eliminarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarVehiculoActionPerformed
         // TODO add your handling code here:
+        if(this.listaVehiculoEliminar.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(null, "Seleccione lel vehiculo que desea eliminar", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         this.listaDeVehiculos.goToPos(this.listaVehiculoEliminar.getSelectedIndex());
         this.listaDeVehiculos.remove();
         eliminarVehiculo();
@@ -1503,6 +1584,10 @@ public class Expomovil extends javax.swing.JFrame {
 
     private void modificarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarVehiculoActionPerformed
         // TODO add your handling code here:
+        if(this.listaVehiculoModificar.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(null, "Seleccione el vehiculo que desea modificar", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         this.listaDeVehiculos.goToPos(this.listaVehiculoModificar.getSelectedIndex());
         ModificarVehiculo ventanaTemp = new ModificarVehiculo(this.listaDeAgencias, this.listaDeVehiculos.getElement(), this);
         ventanaTemp.setVisible(true);
@@ -1511,6 +1596,10 @@ public class Expomovil extends javax.swing.JFrame {
 
     private void consultarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarVehiculoActionPerformed
         // TODO add your handling code here:
+        if(this.listaVehiculoConsultar.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(null, "Seleccione el vehiculo que desea consultar", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         this.listaDeVehiculos.goToPos(this.listaVehiculoConsultar.getSelectedIndex());
         ConsultarVehiculo ventanaTemp = new ConsultarVehiculo(this.listaDeVehiculos.getElement());
         ventanaTemp.setVisible(true);
@@ -1523,6 +1612,22 @@ public class Expomovil extends javax.swing.JFrame {
         String direccion = this.direccionSolicitar.getText();
         String numero = this.telefonoSolicitar.getText();
         String correo = this.correoSolicitar.getText();
+        if(cedula.equals("")) {
+            JOptionPane.showMessageDialog(null, "Ingrese la cedula", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }else if(nombre.equals("")) {
+            JOptionPane.showMessageDialog(null, "Ingrese su nombre", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }else if(direccion.equals("")) {
+            JOptionPane.showMessageDialog(null, "Ingrese la direccion", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }else if(numero.equals("")) {
+            JOptionPane.showMessageDialog(null, "Ingrese su numero", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }else if(correo.equals("")) {
+            JOptionPane.showMessageDialog(null, "Ingrese el correo", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         this.listaDeVehiculos.goToPos(this.vehiculoSolicitar.getSelectedIndex());
         Vehiculo vehiculoTemp = this.listaDeVehiculos.getElement();
         agregarCliente(cedula, nombre, direccion, numero, correo, vehiculoTemp);
@@ -1535,6 +1640,10 @@ public class Expomovil extends javax.swing.JFrame {
 
     private void infoEsperaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infoEsperaActionPerformed
         // TODO add your handling code here:
+        if(this.listaAtenderEspera.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(null, "Seleccione lel cliente que desea consultar", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         infoCliente(this.listaDeClientes.getPos(this.listaAtenderEspera.getSelectedIndex()));
     }//GEN-LAST:event_infoEsperaActionPerformed
 
@@ -1585,6 +1694,10 @@ public class Expomovil extends javax.swing.JFrame {
 
     private void infoEsperaNDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infoEsperaNDActionPerformed
         // TODO add your handling code here:
+        if(this.listaEsperaNoDisponible.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(null, "Seleccione lel cliente que desea consultar", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         infoCliente(this.listaDeClientes2.getPos(this.listaEsperaNoDisponible.getSelectedIndex()));
     }//GEN-LAST:event_infoEsperaNDActionPerformed
 
@@ -1597,6 +1710,17 @@ public class Expomovil extends javax.swing.JFrame {
             agregarPorAgencia(element);
         }
     }//GEN-LAST:event_elegirAgenciaActionPerformed
+
+    private void realizarBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_realizarBusquedaActionPerformed
+        String agenciaTemp = (String)this.agenciaBusqueda.getSelectedItem();
+        String marca = this.marcaBusqueda.getText();
+        String modelo = this.modeloBusqueda.getText();
+        String precio = this.precioBusqueda.getText();
+        busquedaAvanzada (agenciaTemp, marca, modelo, precio);
+        this.marcaBusqueda.setText(null);
+        this.modeloBusqueda.setText(null);
+        this.precioBusqueda.setText(null);
+    }//GEN-LAST:event_realizarBusquedaActionPerformed
 
     /**
      * @param args the command line arguments
