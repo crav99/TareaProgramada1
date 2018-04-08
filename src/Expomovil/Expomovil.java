@@ -25,10 +25,12 @@ public class Expomovil extends javax.swing.JFrame {
     DefaultListModel listaVisualizar;
     DefaultListModel listaEsperaVisualizar;
     DefaultListModel listaEsperaNoDisponibleVisualizar;
+    DefaultListModel listaBusqueda;
     DefaultComboBoxModel listaAgenciasS;
     DefaultComboBoxModel listaVehiculosS;
     LinkedList<Agencia> listaDeAgencias;
     LinkedList<Vehiculo> listaDeVehiculos;
+    LinkedList<Vehiculo> listaBusquedaTemp;
     Queue<Cliente> listaDeClientes;
     Queue<Cliente> listaDeClientes2;
     String[] colores;
@@ -46,6 +48,7 @@ public class Expomovil extends javax.swing.JFrame {
         this.listaVehiculoConsultar.setModel(this.listaVehiculos);
         this.listaVehiculoEliminar.setModel(this.listaVehiculos);
         this.listaVehiculoModificar.setModel(this.listaVehiculos);
+        this.listaBusqueda = new DefaultListModel();
         this.listaVisualizar = new DefaultListModel();
         this.listaVisualizarVehiculos.setModel(this.listaVisualizar);
         this.listaEsperaVisualizar = new DefaultListModel();
@@ -60,6 +63,7 @@ public class Expomovil extends javax.swing.JFrame {
         this.vehiculoSolicitar.setModel(this.listaVehiculosS);
         this.listaDeAgencias = new LinkedList();
         this.listaDeVehiculos = new LinkedList();
+        this.listaBusquedaTemp = new LinkedList();
         this.listaDeClientes = new Queue();
         this.listaDeClientes2 = new Queue();
         this.colores = new String[0];
@@ -258,6 +262,30 @@ public class Expomovil extends javax.swing.JFrame {
     public void enviarCorreo(String to, String message, String subject){
         SendEmail correo = new SendEmail(to, message, subject);
         correo.send();
+    }
+    
+    public void busquedaAvanzada(Agencia agencia, String marca, String modelo, String precio){
+        Agencia agenciaTemp = agencia;
+        String marcaTemp = marca;
+        String modeloTemp = modelo;
+        double precioTemp = Double.parseDouble(precio);
+        this.listaDeVehiculos.goToStart();
+        Vehiculo vehiculoActual;
+        while (this.listaDeVehiculos.next() != false){
+            vehiculoActual = this.listaDeVehiculos.getElement();
+            if (vehiculoActual.getAgencia().getNombre().equals(agenciaTemp.getNombre())){
+                if(vehiculoActual.getMarca().equals(marcaTemp)){
+                    if (vehiculoActual.getModelo().equals(modeloTemp)){
+                        if(vehiculoActual.getPrecio()==precioTemp){
+                            this.listaBusquedaTemp.append(vehiculoActual);
+                        }
+                    }
+                }
+            }
+            this.listaDeVehiculos.next();
+        }
+        vehiculoActual = (Vehiculo) this.listaBusquedaTemp.getElement();
+        System.out.println(vehiculoActual.getModelo());
     }
     
     /**
@@ -1139,6 +1167,11 @@ public class Expomovil extends javax.swing.JFrame {
         jLabel37.setText("Precio:");
 
         realizarBusqueda.setText("Realizar");
+        realizarBusqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                realizarBusquedaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout busquedaAvanzadaLayout = new javax.swing.GroupLayout(busquedaAvanzada);
         busquedaAvanzada.setLayout(busquedaAvanzadaLayout);
@@ -1376,6 +1409,15 @@ public class Expomovil extends javax.swing.JFrame {
     private void visualizarVehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizarVehiculosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_visualizarVehiculosActionPerformed
+
+    private void realizarBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_realizarBusquedaActionPerformed
+        this.listaDeAgencias.goToPos(this.agenciaBusqueda.getSelectedIndex());
+        Agencia agenciaTemp = this.listaDeAgencias.getElement();
+        String marca = this.marcaBusqueda.getText();
+        String modelo = this.modeloBusqueda.getText();
+        String precio = this.precioBusqueda.getText();
+        busquedaAvanzada (agenciaTemp, marca, modelo, precio);
+    }//GEN-LAST:event_realizarBusquedaActionPerformed
 
     /**
      * @param args the command line arguments
