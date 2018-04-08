@@ -34,8 +34,8 @@ public class SendEmail {
      */
     public SendEmail(String to, String message, String subject){
         this.host = "smtp.gmail.com";
-        this.user = "avrg99@gmail.com";
-        this.password = "CRav99..";
+        this.user = "proyectofadsi@gmail.com";
+        this.password = "fadsiproject";
         this.message = message;
         this.to = to;
         this.from = "ExpoMovil";
